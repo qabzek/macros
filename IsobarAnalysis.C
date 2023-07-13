@@ -45,9 +45,12 @@ int AnalysisModified(const Char_t *inFile = "/home/ubuntu/RootFiles/st_physics_*
     picoReader->SetStatus("*", 0);
     picoReader->SetStatus("Event*", 1);
     picoReader->SetStatus("Track*", 1);
+    picoReader->SetStatus("BTofHit*", 1);
     picoReader->SetStatus("BTofPidTraits*", 1);
 
     TFile *outputFile = new TFile(defaultOutFile, "recreate");
+
+    float cent5=-999;
 
     // histogram building
     
@@ -81,5 +84,16 @@ int AnalysisModified(const Char_t *inFile = "/home/ubuntu/RootFiles/st_physics_*
                       << std::endl;
             break;
         }
+
+        float RefM=event->refMult();
+        if      (RefM > 209)                cent5 = 0; //0-10
+        else if (RefM > 146 && RefM <= 209) cent5 = 1; //10-20
+        else if (RefM > 66  && RefM <= 146) cent5 = 2; //20-40
+        else if (RefM > 25  && RefM <= 66 ) cent5 = 3; //40-60
+        else if (RefM > 8   && RefM <= 25 ) cent5 = 4; //60-80
+        else cent5 =-1;
+        if  (cent5 < 0) continue;
+
+
     }
 }
