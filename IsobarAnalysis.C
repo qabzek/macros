@@ -92,34 +92,7 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/isobar_files/alisher/st_
                       << std::endl;
             break;
         }
-        Long64_t events2read = picoReader->chain()->GetEntries();
-        for (Long64_t iEvent = 0; iEvent < events2read; iEvent++)
-        {
-
-            Int_t multCounter = 0;
-
-            if (iEvent % 1000 == 0)
-                std::cout << "Working on event #[" << (iEvent + 1)
-                          << "/" << events2read << "]" << std::endl;
-
-            if (!(picoReader->readPicoEvent(iEvent)))
-            {
-                std::cout << "Something went wrong, Master! Nothing to analyze..."
-                          << std::endl;
-                break;
-            }
-
-            // Retrieve picoDst
-            StPicoDst *picoDst = picoReader->picoDst();
-
-            // Retrieve event information
-            StPicoEvent *event = picoDst->event();
-            if (!event)
-            {
-                std::cout << "Something went wrong, Master! Event is hiding from me..."
-                          << std::endl;
-                break;
-            }
+        
 
             // cut badruns PileUp and make centrality
             hist1[0][0]->Fill(event->refMult());
@@ -250,7 +223,6 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/isobar_files/alisher/st_
                 dPt = (hist_spectra[0]->GetBinCenter(hist_spectra[0]->GetNbinsX()) - hist_spectra[0]->GetBinCenter(0)) / hist_spectra[0]->GetNbinsX();
                 hist_spectra[cent9]->Fill(picoTrack->pMom().Pt(), 1. / (picoTrack->pMom().Pt()) * dPt * dEta);
             }
-        }
         // Filling multiplicity after cuts
         if (TMath::Abs(event->primaryVertex().Z()) < 30 &&
             TMath::Sqrt(pow(event->primaryVertex().X(), 2) + pow(event->primaryVertex().Y(), 2)) < 2)
