@@ -190,7 +190,6 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/isobar_files/alisher/st_
                       flFit / flPoss > 0.52))
 
                     continue;
-                multCounter++;
                 if(picoTrack->isPrimary())
                 {
                 hist_Eta[1]->Fill(picoTrack->pMom().Eta());
@@ -231,10 +230,8 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/isobar_files/alisher/st_
                 }
             }
         // Filling multiplicity after cuts
-        if (TMath::Abs(event->primaryVertex().Z()) < 30 &&
-            TMath::Sqrt(pow(event->primaryVertex().X(), 2) + pow(event->primaryVertex().Y(), 2)) < 2)
-            hist_mult[1]->Fill(multCounter);
-        multCounter = 0;
+            hist_mult[1]->Fill(event->refMult());
+        
     //End of event cut 
     }
     picoReader->Finish();
