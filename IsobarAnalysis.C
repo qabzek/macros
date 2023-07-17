@@ -61,8 +61,9 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/isobar_files/alisher/st_
     TFile *outputFile = new TFile(defaultOutFile, "recreate");
 
     // histogram building
-
+    TH2F*Alisher=new  TH2F("A","dedx ot p",1000,10,-10,1000,0,50);
     build();
+    build_pt();
 
     Long64_t events2read = picoReader->chain()->GetEntries();
     for (Long64_t iEvent = 0; iEvent < events2read; iEvent++)
@@ -94,13 +95,16 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/isobar_files/alisher/st_
         }
         
 
-            // cut badruns PileUp and make centrality
-            hist1[0][0]->Fill(event->refMult());
+            // refmult
+            hist_mult[0]->Fill(event->refMult());
             // Vxy
-            hist2[0][11]->Fill(event->primaryVertex().X(), event->primaryVertex().Y());
+            hist_Vxy[0]->Fill(event->primaryVertex().X(), event->primaryVertex().Y());
             // Vz
-            hist1[0][1]->Fill(event->primaryVertex().Z());
+            hist_Vz[0]->Fill(event->primaryVertex().Z());
 
+            
+
+            // cut badruns PileUp and make centrality
             int cent9 = -999;
             double CentWeight;
             StRefMultCorr *refmultCorrUtil = CentralityMaker::instance()->getRefMultCorr();
@@ -116,17 +120,16 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/isobar_files/alisher/st_
             if (cent9 < 0)
                 continue;
 
-            // refmult
 
             // same with cuts
-            if (event->primaryVertex().Z() < 25 && event->primaryVertex().Z() > -35 &&
-                TMath::Sqrt(pow(event->primaryVertex().X(), 2) + pow(event->primaryVertex().Y(), 2)) < 2)
-            {
+            if  (!(TMath::Abs(event->primaryVertex().Z()) < 25 &&
+            TMath::Sqrt(pow(event->primaryVertex().X(), 2) + pow(event->primaryVertex().Y(), 2)) < 2))
+            continue;
                 // Vxy
-                hist2[1][11]->Fill(event->primaryVertex().X(), event->primaryVertex().Y());
+                hist_Vxy[1]->Fill(event->primaryVertex().X(), event->primaryVertex().Y());
                 // Vz
-                hist1[1][1]->Fill(event->primaryVertex().Z());
-            }
+                hist_Vz[1]->Fill(event->primaryVertex().Z());
+            
 
             Int_t nTracks = picoDst->numberOfTracks();
             for (Int_t iTrack = 0; iTrack < nTracks; iTrack++)
@@ -140,24 +143,25 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/isobar_files/alisher/st_
 
                 if (picoTrack->isPrimary())
                 {
-                    hist1[0][2]->Fill(picoTrack->pMom().Eta());
+                    hist_Eta[0]->Fill(picoTrack->pMom().Eta());
                     // fill primary track hits
-                    hist1[0][3]->Fill(picoTrack->nHits());
-                    hist1[0][4]->Fill(picoTrack->nHitsFit());
-                    hist1[0][5]->Fill(picoTrack->nHitsMax());
-                    hist1[0][6]->Fill(flFit / flPoss);
+                    hist_pHits[0]->Fill(picoTrack->nHits());
+                    hist_pHitsFit[0]->Fill(picoTrack->nHitsFit());
+                    hist_pHitsMax[0]->Fill(picoTrack->nHitsMax());
+                    hist_pFitPoss[0]->Fill(flFit / flPoss);
                     // fill DCA
-                    hist1[0][7]->Fill(picoTrack->gDCA(event->primaryVertex()).Z());
-                    hist1[0][8]->Fill(picoTrack->gDCA(event->primaryVertex()).Mag());
-                    hist1[0][9]->Fill(picoTrack->gDCA(event->primaryVertex()).X(), picoTrack->gDCA(event->primaryVertex()).Y());
+                    hist_DCAz[0]->Fill(picoTrack->gDCA(event->primaryVertex()).Z());
+                    hist_DCAmag[0]->Fill(picoTrack->gDCA(event->primaryVertex()).Mag());
+                    hist_DCAxy[0]->Fill(picoTrack->gDCA(event->primaryVertex()).X(), picoTrack->gDCA(event->primaryVertex()).Y());
                     // fill dE/dx hits
-                    hist1[0][10]->Fill(picoTrack->nHitsDedx());
+                    hist_pDedxHits[0]->Fill(picoTrack->nHitsDedx());
                     // fill dEdx p/q
-                    hist2[0][12]->Fill(picoTrack->pPtot() / picoTrack->charge(), picoTrack->dEdx());
+                    hist_pDedx[0]->Fill(picoTrack->pPtot() / picoTrack->charge(), picoTrack->dEdx());
+                    Alisher->Fill(picoTrack->pPtot() / picoTrack->charge(), picoTrack->dEdx());
                     // fill Phi vs Pt
-                    hist2[0][14]->Fill(picoTrack->pPt(), picoTrack->pMom().Phi());
+                    hist_PhiPt[0]->Fill(picoTrack->pPt(), picoTrack->pMom().Phi());
                     // fill Eta vs Pt
-                    hist2[0][15]->Fill(picoTrack->pPt(), picoTrack->pMom().Eta());
+                    hist_EtaPt[0]->Fill(picoTrack->pPt(), picoTrack->pMom().Eta());
 
                     // fill for TOF
                     if (picoTrack->isTofTrack())
@@ -168,15 +172,16 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/isobar_files/alisher/st_
                             continue;
 
                         // Fill 1/beta
-                        hist2[0][13]->Fill(picoTrack->pPtot() / picoTrack->charge(), 1. / trait->btofBeta());
+                        hist_reverseBeta[0]->Fill(picoTrack->pPtot() / picoTrack->charge(), 1. / trait->btofBeta());
                         // fill squared mass
-                        hist2[0][16]->Fill(picoTrack->pPt() / picoTrack->charge(), (1 / pow(trait->btofBeta(), 2) - 1) * pow(picoTrack->pPt(), 2));
+                        hist_squaredMass[0]->Fill(picoTrack->pPt() / picoTrack->charge(), (1 / pow(trait->btofBeta(), 2) - 1) * pow(picoTrack->pPt(), 2));
                     }
                 }
 
                 // with cuts
-                if (!(picoTrack->isPrimary() && picoTrack->gDCA(event->primaryVertex()).Mag() < 3 &&
-                      event->primaryVertex().Z() < 25 && event->primaryVertex().Z() > -35 &&
+                if (!(picoTrack->gDCA(event->primaryVertex()).Mag() < 3 &&
+                      TMath::Abs(event->primaryVertex().Z() < 25 &&
+            TMath::Sqrt(pow(event->primaryVertex().X(), 2) + pow(event->primaryVertex().Y(), 2)) < 2) &&
                       TMath::Sqrt(pow(event->primaryVertex().X(), 2) + pow(event->primaryVertex().Y(), 2)) < 2 &&
                       picoTrack->pPt() < 5 &&
                       picoTrack->pPt() > 0.015 &&
@@ -187,24 +192,26 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/isobar_files/alisher/st_
 
                     continue;
                 multCounter++;
-                hist1[1][2]->Fill(picoTrack->pMom().Eta());
+                if(picoTrack->isPrimary())
+                {
+                hist_Eta[1]->Fill(picoTrack->pMom().Eta());
                 // fill primary track hits
-                hist1[1][3]->Fill(picoTrack->nHits());
-                hist1[1][4]->Fill(picoTrack->nHitsFit());
-                hist1[1][5]->Fill(picoTrack->nHitsMax());
-                hist1[1][6]->Fill(flFit / flPoss);
+                hist_pHits[1]->Fill(picoTrack->nHits());
+                hist_pHitsFit[1]->Fill(picoTrack->nHitsFit());
+                hist_pHitsMax[1]->Fill(picoTrack->nHitsMax());
+                hist_pFitPoss[1]->Fill(flFit / flPoss);
                 // fill DCA
-                hist1[1][7]->Fill(picoTrack->gDCA(event->primaryVertex()).Z());
-                hist1[1][8]->Fill(picoTrack->gDCA(event->primaryVertex()).Mag());
-                hist1[1][9]->Fill(picoTrack->gDCA(event->primaryVertex()).X(), picoTrack->gDCA(event->primaryVertex()).Y());
+                hist_DCAz[1]->Fill(picoTrack->gDCA(event->primaryVertex()).Z());
+                hist_DCAmag[1]->Fill(picoTrack->gDCA(event->primaryVertex()).Mag());
+                hist_DCAxy[1]->Fill(picoTrack->gDCA(event->primaryVertex()).X(), picoTrack->gDCA(event->primaryVertex()).Y());
                 // fill dE/dx hits
-                hist1[1][10]->Fill(picoTrack->nHitsDedx());
+                hist_pDedxHits[1]->Fill(picoTrack->nHitsDedx());
                 // fill dEdx p/q
-                hist2[1][12]->Fill(picoTrack->pPtot() / picoTrack->charge(), picoTrack->dEdx());
+                hist_pDedx[1]->Fill(picoTrack->pPtot() / picoTrack->charge(), picoTrack->dEdx());
                 // fill Phi vs Pt
-                hist2[1][14]->Fill(picoTrack->pPt(), picoTrack->pMom().Phi());
+                hist_PhiPt[1]->Fill(picoTrack->pPt(), picoTrack->pMom().Phi());
                 // fill Eta vs Pt
-                hist2[1][15]->Fill(picoTrack->pPt(), picoTrack->pMom().Eta());
+                hist_EtaPt[1]->Fill(picoTrack->pPt(), picoTrack->pMom().Eta());
 
                 // fill for TOF
                 if (picoTrack->isTofTrack())
@@ -214,20 +221,22 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/isobar_files/alisher/st_
                     if (!trait)
                         continue;
                     // Fill 1/beta
-                    hist2[1][13]->Fill(picoTrack->pPtot() / picoTrack->charge(), 1. / trait->btofBeta());
+                    hist_reverseBeta[1]->Fill(picoTrack->pPtot() / picoTrack->charge(), 1. / trait->btofBeta());
                     // fill squared mass
-                    hist2[1][16]->Fill(picoTrack->pPt() / picoTrack->charge(), (1 / pow(trait->btofBeta(), 2) - 1) * pow(picoTrack->pPt(), 2));
+                    hist_squaredMass[1]->Fill(picoTrack->pPt() / picoTrack->charge(), (1 / pow(trait->btofBeta(), 2) - 1) * pow(picoTrack->pPt(), 2));
                 }
                 // fill pt spectra for each centality
-                double dEta = 1, dPt;
+                double dEta = 2, dPt;
                 dPt = (hist_spectra[0]->GetBinCenter(hist_spectra[0]->GetNbinsX()) - hist_spectra[0]->GetBinCenter(0)) / hist_spectra[0]->GetNbinsX();
-                hist_spectra[cent9]->Fill(picoTrack->pMom().Pt(), 1. / (picoTrack->pMom().Pt()) * dPt * dEta);
+                hist_spectra[cent9]->Fill(picoTrack->pMom().Pt(), 1. / 2*M_PI * (picoTrack->pMom().Pt()) * dPt * dEta);
+                }
             }
         // Filling multiplicity after cuts
         if (TMath::Abs(event->primaryVertex().Z()) < 30 &&
             TMath::Sqrt(pow(event->primaryVertex().X(), 2) + pow(event->primaryVertex().Y(), 2)) < 2)
-            hist1[1][0]->Fill(multCounter);
+            hist_mult[1]->Fill(multCounter);
         multCounter = 0;
+    //End of event cut 
     }
     picoReader->Finish();
     outputFile->Write();
