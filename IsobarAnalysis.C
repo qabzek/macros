@@ -61,7 +61,7 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/isobar_files/alisher/st_
     TFile *outputFile = new TFile(defaultOutFile, "recreate");
 
     // histogram building
-    TH2F*Alisher=new  TH2F("A","dedx ot p",1000,10,-10,1000,0,50);
+    
     build();
     build_pt();
 
@@ -157,7 +157,6 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/isobar_files/alisher/st_
                     hist_pDedxHits[0]->Fill(picoTrack->nHitsDedx());
                     // fill dEdx p/q
                     hist_pDedx[0]->Fill(picoTrack->pPtot() / picoTrack->charge(), picoTrack->dEdx());
-                    Alisher->Fill(picoTrack->pPtot() / picoTrack->charge(), picoTrack->dEdx());
                     // fill Phi vs Pt
                     hist_PhiPt[0]->Fill(picoTrack->pPt(), picoTrack->pMom().Phi());
                     // fill Eta vs Pt
