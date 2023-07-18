@@ -64,6 +64,7 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/isobar_files/alisher/st_
     
     build();
     build_pt();
+    TH1F *hist_CentCount = new TH1F("CentCount","CentCount",10,0,10);
 
     Long64_t events2read = picoReader->chain()->GetEntries();
     for (Long64_t iEvent = 0; iEvent < events2read; iEvent++)
@@ -129,7 +130,7 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/isobar_files/alisher/st_
                 hist_Vxy[1]->Fill(event->primaryVertex().X(), event->primaryVertex().Y());
                 // Vz
                 hist_Vz[1]->Fill(event->primaryVertex().Z());
-            
+                hist_CentCount->Fill(cent9, CentWeight);
 
             Int_t nTracks = picoDst->numberOfTracks();
             for (Int_t iTrack = 0; iTrack < nTracks; iTrack++)

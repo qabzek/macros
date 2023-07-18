@@ -17,11 +17,13 @@ TFile *file = new TFile("/home/ubuntu/1Myresults/isobar_Test.root", "READ");
 TH1F *h1D[2][11];
 TH2F *h2D[2][6];
 TH1F *hPt[9];
+TH1F *hCentCount;
+Float_t Nevents;
 TCanvas *c;
 TString config_cut[2] = {"before", "after"};
 TString name[18] = {"mult", "Vz", "Eta", "pHits", "pHitsFit", "pHitsMax", "pFitPoss", "DCAz",
                     "DCAmag", "DCAxy", "pdedxHits", "Vxy", "pDedx", "reverseBeta", "EtaPt", "EtaPt", "PhiPt", "squaredMass"}; //"EtaPt"
-TString centc[9] = {"0-5", "5-10", "10-20", "20-30", "30-40", "40-50", "50-60", "60-70", "70-80"};
+TString centc[9] = {"70-80", "60-70", "50-60", "40-50", "30-40", "20-30", "10-20", "5-10", "0-5"};
 
 void plot1D()
 {
@@ -63,23 +65,36 @@ void plot2D()
 
 void plotPt()
 {
+    c = new TCanvas();    
     for (int i = 0; i < 9; i++)
     {
         file->GetObject(Form("hist_spectra_cent%i", i), hspectra[i]);
-        c = new TCanvas();
-        hspectra[i]->Draw("col");
+        file->GetObject("CentCount",hCentCount);
+        Float_t Numbins;
+        Nevents= hCentCount->GetBinContent(i+1);
+        Numbins = hspectra[i]->GetNbinsX();
+        for(int j=0;j<Numbins;j++)
+        {
+            hspectra[i]->SetBinContent(j, (hspectra[i]->GetBinContent(j)/Nevents) * pow(2,i));
+            hspectra[i]->SetBinError(j, hspectra[i]->GetBinError(j)/Nevents);
+        }
+        
+        hspectra[i]->Sumw2();
+        hspectra[i]->Draw("same");
+        hspectra[i]->SetAxisRange(0.000001,10000,"Y");
         gPad->SetLogy();
         hspectra[i]->SetXTitle("p_{T} [Gev/c]");
         hspectra[i]->SetYTitle("Yields");
-        c->SaveAs(Form("/home/ubuntu/1Myresults/plots/%s_spectra.png", centc[i].Data()));
+        hspectra[i]->SetLineColor(EColor[i]);
+        //c->SaveAs(Form("/home/ubuntu/1Myresults/plots/%s_spectra.png", centc[i].Data()));
     }
 }
 
 int plots()
 {
     // plot1D();
-    plot2D();
-    // plotPt();
+    //plot2D();
+     plotPt();
 
     return 0;
 }

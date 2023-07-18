@@ -61,7 +61,7 @@ void build()
 
 void build_pt()
 {
-    TString centc[9]={"0-5","5-10","10-20","20-30","30-40","40-50","50-60","60-70","70-80"};
+    TString centc[9]={"70-80", "60-70", "50-60", "40-50", "30-40", "20-30", "10-20", "5-10", "0-5"};
     for (k = 0; k < 9; k++)
     {
         hist_spectra[k] = new TH1F(Form("hist_spectra_cent%i", k),
