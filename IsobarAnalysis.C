@@ -43,9 +43,9 @@ R__LOAD_LIBRARY(StRefMultCorr/libStRefMultCorr);
 gSystem->Load("StPicoEvent/libStRefMultCorr.so");
 #endif
 
-const Char_t *defaultOutFile = "../1Myresults/isobar_Test.root";
+const Char_t *defaultOutFile = "../1Myresults/isobar_RuRu_2018.root";
 
-int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/isobar_files/alisher/st_physics_*.picoDst.root", const Char_t *outFileName = defaultOutFile)
+int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/isobar_files/production_isobar_2018/RuRu/st_physics_*.picoDst.root", const Char_t *outFileName = defaultOutFile)
 {
 
     StPicoDstReader *picoReader = new StPicoDstReader(inFile);
@@ -123,7 +123,7 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/isobar_files/alisher/st_
 
 
             // same with cuts
-            if  (!(TMath::Abs(event->primaryVertex().Z()) < 25 &&
+            if  (!((event->primaryVertex().Z()) > -35 && (event->primaryVertex().Z()) < 25 &&
             TMath::Sqrt(pow(event->primaryVertex().X(), 2) + pow(event->primaryVertex().Y(), 2)) < 2))
             continue;
                 // Vxy
@@ -180,8 +180,7 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/isobar_files/alisher/st_
 
                 // with cuts
                 if (!(picoTrack->gDCA(event->primaryVertex()).Mag() < 3 &&
-                      TMath::Abs(event->primaryVertex().Z() < 25 &&
-            TMath::Sqrt(pow(event->primaryVertex().X(), 2) + pow(event->primaryVertex().Y(), 2)) < 2) &&
+                      (event->primaryVertex().Z()) > -35 && (event->primaryVertex().Z()) < 25 &&
                       TMath::Sqrt(pow(event->primaryVertex().X(), 2) + pow(event->primaryVertex().Y(), 2)) < 2 &&
                       picoTrack->pPt() < 5 &&
                       picoTrack->pPt() > 0.015 &&
