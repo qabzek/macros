@@ -64,7 +64,7 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/isobar_files/production_
     
     build();
     build_pt();
-    TH1F *hist_CentCount = new TH1F("CentCount","CentCount",10,0,10);
+    TH1D *hist_CentCount = new TH1D("CentCount","CentCount",10,0,10);
 
     Long64_t events2read = picoReader->chain()->GetEntries();
     for (Long64_t iEvent = 0; iEvent < events2read; iEvent++)
