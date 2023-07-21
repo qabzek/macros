@@ -15,18 +15,16 @@
 
 using namespace std;
 
+TFile *file = new TFile("/home/ubuntu/folder/1Myresults/isobar_RuRu_2018.root", "READ");
+
 TH1D *hspectra[9];
-TFile *file = new TFile("/home/ubuntu/1Myresults/isobar_RuRu_2018.root", "READ");
 TH1D *h1D[2][11];
 TH2D *h2D[2][6];
 TH1D *hPt[9];
-TH2D *hist_dEdx;
-TH2D *hist_revbeta;
-TH2D *hist_msq;
-TH1D *hDedx_py;
-TH1D *hreverseBeta_py;
-TH1D *hsquaredMass_py;
+TH1D *h_py[3][30];
 TH1D *hCentCount;
+
+
 Float_t Nevents;
 TCanvas *c;
 TCanvas *c1;
@@ -37,6 +35,12 @@ TString name[17] = {"mult", "Vz", "Eta", "pHits", "pHitsFit", "pHitsMax", "pFitP
 TString centc[9] = {"70-80", "60-70", "50-60", "40-50", "30-40", "20-30", "10-20", "5-10", "0-5"};
 int col[9]    = {1,632,600,416,840,616,880,800,900};
 int marker[9] = {20,21,25,24,22,26,29,30,31}; 
+double x[31]={0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1,
+              1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2,
+              2.2,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3,3.1};
+double xmax[17]={0,0,0,0,0,0,0,0,0,0,0,10,2,0,0.4,0};
+double xmin[17]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,-0.4,0};
+              
 
 
 void plot1D()
@@ -52,7 +56,7 @@ void plot1D()
             {
                 gPad->SetLogy();
             }
-            c->SaveAs(Form("/home/ubuntu/1Myresults/isobar_2018/RuRu/%s_%s.png", name[j].Data(), config_cut[i].Data()));
+            c->SaveAs(Form("/home/ubuntu/folder/1Myresults/isobar_2018/RuRu/QA/%s_%s.png", name[j].Data(), config_cut[i].Data()));
         }
     }
 }
@@ -72,7 +76,7 @@ void plot2D()
                 gPad->SetLogz();
             }
             h2D[i][j]->Draw("col");
-            c->SaveAs(Form("/home/ubuntu/1Myresults/isobar_2018/RuRu/%s_%s.png", name[j].Data(), config_cut[i].Data()));
+            c->SaveAs(Form("/home/ubuntu/folder/1Myresults/isobar_2018/RuRu/QA/%s_%s.png", name[j].Data(), config_cut[i].Data()));
         }
     }
 }
@@ -109,15 +113,31 @@ void plotPt()
         legend->SetNColumns(3);
         legend->AddEntry(hspectra[i],Form("%s",centc[i].Data()),"lp");
         legend->Draw();
-        //c->SaveAs(Form("/home/ubuntu/1Myresults/isobar_2018/RuRu/%s_spectra.png", centc[i].Data()));
+        //c->SaveAs(Form("/home/ubuntu/folder/1Myresults/isobar_2018/RuRu/%s_spectra.png", centc[i].Data()));
     }
-    c->SaveAs("/home/ubuntu/1Myresults/isobar_2018/RuRu/cent_Pt_spectra.png");
+    c->SaveAs("/home/ubuntu/folder/1Myresults/isobar_2018/RuRu/Spectra/cent_Pt_spectra.png");
 }
 
 void pid()
 {
-    file->GetObject("hist_pDedx_after", hist_dEdx);
+    for(int j=12;j<16;j++)
+    {
+    if(j==14) continue;
+    file->GetObject(Form("hist_%s_after",name[j].Data()), h2D[1][j]);
+    for(int i=0;i<30;i++)
+    {
+        c1 = new TCanvas();
     
+        Double_t firstx = x[i], lastx = x[i+1];
+        Int_t firstxbin = h2D[1][j]->GetXaxis()->FindFixBin(firstx);
+        Int_t lastxbin = h2D[1][j]->GetXaxis()->FindFixBin(lastx);
+        h_py[j][i] = new TH1D(Form("%s_py_%f_%f",name[j].Data(),firstx,lastx),Form("%s projection at p = %f-%f GeV/c",name[j].Data(),firstx,lastx),60,xmin[j],xmax[j]);
+        h_py[j][i] = h2D[1][j]->ProjectionY("_py", firstxbin, lastxbin, "");
+        gPad->SetLogy();
+        h_py[j][i]->Draw();
+        c1->SaveAs(Form("/home/ubuntu/folder/1Myresults/isobar_2018/RuRu/PID/%s_py_%f_%f.png",name[j].Data(),firstx,lastx));
+    }
+    }
     //file->GetObject("hist_reverseBeta_after", hist_revbeta);
     //file->GetObject("hist_squaredMass_after", hist_msq);
     

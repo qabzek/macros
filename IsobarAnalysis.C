@@ -43,9 +43,9 @@ R__LOAD_LIBRARY(StRefMultCorr/libStRefMultCorr);
 gSystem->Load("StPicoEvent/libStRefMultCorr.so");
 #endif
 
-const Char_t *defaultOutFile = "../1Myresults/isobar_RuRu_2018.root";
+const Char_t *defaultOutFile = "../folder/1Myresults/isobar_RuRu_2018.root";
 
-int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/isobar_files/production_isobar_2018/RuRu/st_physics_*.picoDst.root", const Char_t *outFileName = defaultOutFile)
+int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/folder/isobar_files/production_isobar_2018/RuRu/st_physics_*.picoDst.root", const Char_t *outFileName = defaultOutFile)
 {
 
     StPicoDstReader *picoReader = new StPicoDstReader(inFile);
