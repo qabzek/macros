@@ -101,7 +101,7 @@ void plotPt()
         }
         hspectra[i]->Sumw2();
         hspectra[i]->Draw("same");
-        hspectra[i]->SetAxisRange(0.00001,10000,"Y");
+        hspectra[i]->SetAxisRange(0.00001,10000,"Y");hspectra[i]->SetAxisRange(0.00001,10000,"X");
         gPad->SetLogy();
         hspectra[i]->SetXTitle("p_{T} [Gev/c]");
         hspectra[i]->SetYTitle("Yields");
@@ -120,11 +120,10 @@ void plotPt()
 
 void pid()
 {
-    for(int j=12;j<16;j++)
+    for(int j=12;j<14;j++)
     {
-    if(j==14) continue;
     file->GetObject(Form("hist_%s_after",name[j].Data()), h2D[1][j]);
-    for(int i=0;i<30;i++)
+    for(int i=0;i<40;i++)
     {
         c1 = new TCanvas();
     
@@ -145,9 +144,9 @@ void pid()
 int plots()
 {
     gStyle->SetOptStat(0);
-    //plot1D();
-    //plot2D();
-    //plotPt();
+    plot1D();
+    plot2D();
+    plotPt();
     pid();
 
     return 0;

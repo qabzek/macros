@@ -13,7 +13,13 @@
 #include "TStyle.h"
 
 int i, j, k;
-TH1D*hist_spectra[9];
+//TH1D*hist_spectra[9];
+TH1D*hist_pip[9];
+TH1D*hist_pim[9];
+TH1D*hist_kap[9];
+TH1D*hist_kam[9];
+TH1D*hist_pr[9];
+TH1D*hist_apr[9];
 const int config_cut = 2;
 TString config[config_cut] = {"before", "after"};
 
@@ -66,7 +72,19 @@ void build_pt()
     {
         //hist_spectra[k] = new TH1D(Form("hist_spectra_cent%i", k),
         //                           Form("p_{T} spectra for %s centrality", centc[k].Data()), 60, 0, 6);
-        hist_spectra[k] = new TH1D(Form("hist_spectra_cent%i", k),
-                                   "p_{T} spectra for each centrality", 60, 0, 6);
+        //hist_spectra[k] = new TH1D(Form("hist_spectra_cent%i", k),
+        //                           "p_{T} spectra for each centrality", 60, 0, 6);
+        hist_pip[k] = new TH1D(Form("hist_pip_cent%i", k),
+                                   "pip p_{T} spectra for each centrality", 60, 0, 6);
+        hist_pim[k] = new TH1D(Form("hist_pim_cent%i", k),
+                                   "pim p_{T} spectra for each centrality", 60, 0, 6);    
+        hist_kap[k] = new TH1D(Form("hist_kap_cent%i", k),
+                                   "kap p_{T} spectra for each centrality", 60, 0, 6);
+        hist_kam[k] = new TH1D(Form("hist_kam_cent%i", k),
+                                   "kam p_{T} spectra for each centrality", 60, 0, 6);
+        hist_pr[k] = new TH1D(Form("hist_pr_cent%i", k),
+                                   "pr p_{T} spectra for each centrality", 60, 0, 6); 
+        hist_apr[k] = new TH1D(Form("hist_pm_cent%i", k),
+                                   "apr p_{T} spectra for each centrality", 60, 0, 6);                       
     }
 }
