@@ -32,7 +32,7 @@
 #include "StRefMultCorr/Param.h"
 //_________________
 #if ROOT_VERSION_CODE >= ROOT_VERSION(6, 0, 0)
-R__LOAD_LIBRARY(/home/ubuntu/macros/STAR/StRoot/StPicoEvent/StarLibrary/libStPicoDst);
+R__LOAD_LIBRARY(StPicoEvent/libStPicoDst);
 #else
 gSystem->Load("StPicoEvent/libStPicoDst.so");
 #endif
