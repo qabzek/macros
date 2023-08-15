@@ -21,7 +21,7 @@ TH1D *hspectra[9];
 TH1D *h1D[2][11];
 TH2D *h2D[2][6];
 TH1D *hPt[9];
-TH1D *h_py[3][30];
+TH1D *h_py[2][30];
 TH1D *hCentCount;
 
 
@@ -130,7 +130,7 @@ void pid()
         Double_t firstx = x[i], lastx = x[i+1];
         Int_t firstxbin = h2D[1][j]->GetXaxis()->FindFixBin(firstx);
         Int_t lastxbin = h2D[1][j]->GetXaxis()->FindFixBin(lastx);
-        h_py[j][i] = new TH1D(Form("%s_py_%f_%f",name[j].Data(),firstx,lastx),Form("%s projection at p = %f-%f GeV/c",name[j].Data(),firstx,lastx),60,xmin[j],xmax[j]);
+        h_py[j][i] = new TH1D(Form("%s_py_%f_%f",name[j].Data(),firstx,lastx),Form("%s projection at p = %f-%f GeV/c",name[j].Data(),firstx,lastx),40,xmin[j],xmax[j]);
         h_py[j][i] = h2D[1][j]->ProjectionY("_py", firstxbin, lastxbin, "");
         gPad->SetLogy();
         h_py[j][i]->Draw();
@@ -144,9 +144,9 @@ void pid()
 int plots()
 {
     gStyle->SetOptStat(0);
-    plot1D();
-    plot2D();
-    plotPt();
+    //plot1D();
+    //plot2D();
+    //plotPt();
     pid();
 
     return 0;
