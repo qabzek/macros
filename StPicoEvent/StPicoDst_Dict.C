@@ -10,7 +10,7 @@
 #include <string.h>
 #include <assert.h>
 #define G__DICTIONARY
-#include "ROOT/RConfig.hxx"
+#include "RConfig.h"
 #include "TClass.h"
 #include "TDictAttributeMap.h"
 #include "TInterpreter.h"
@@ -94,10 +94,10 @@ namespace ROOT {
    }
    TGenericClassInfo *GenerateInitInstance(const ::StPicoMtdHit*)
    {
-      return GenerateInitInstanceLocal(static_cast<::StPicoMtdHit*>(nullptr));
+      return GenerateInitInstanceLocal((::StPicoMtdHit*)nullptr);
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::StPicoMtdHit*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const ::StPicoMtdHit*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
 } // end of namespace ROOT
 
 namespace ROOT {
@@ -126,10 +126,10 @@ namespace ROOT {
    }
    TGenericClassInfo *GenerateInitInstance(const ::StPicoBEmcSmdEHit*)
    {
-      return GenerateInitInstanceLocal(static_cast<::StPicoBEmcSmdEHit*>(nullptr));
+      return GenerateInitInstanceLocal((::StPicoBEmcSmdEHit*)nullptr);
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::StPicoBEmcSmdEHit*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const ::StPicoBEmcSmdEHit*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
 } // end of namespace ROOT
 
 namespace ROOT {
@@ -160,14 +160,14 @@ namespace ROOT {
    }
    TGenericClassInfo *GenerateInitInstance(const ::StPicoDst*)
    {
-      return GenerateInitInstanceLocal(static_cast<::StPicoDst*>(nullptr));
+      return GenerateInitInstanceLocal((::StPicoDst*)nullptr);
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::StPicoDst*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const ::StPicoDst*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
 
    // Dictionary for non-ClassDef classes
    static TClass *StPicoDst_Dictionary() {
-      TClass* theClass =::ROOT::GenerateInitInstanceLocal(static_cast<const ::StPicoDst*>(nullptr))->GetClass();
+      TClass* theClass =::ROOT::GenerateInitInstanceLocal((const ::StPicoDst*)nullptr)->GetClass();
       StPicoDst_TClassManip(theClass);
    return theClass;
    }
@@ -203,10 +203,10 @@ namespace ROOT {
    }
    TGenericClassInfo *GenerateInitInstance(const ::StPicoEvent*)
    {
-      return GenerateInitInstanceLocal(static_cast<::StPicoEvent*>(nullptr));
+      return GenerateInitInstanceLocal((::StPicoEvent*)nullptr);
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::StPicoEvent*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const ::StPicoEvent*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
 } // end of namespace ROOT
 
 namespace ROOT {
@@ -231,10 +231,10 @@ namespace ROOT {
    }
    TGenericClassInfo *GenerateInitInstance(const ::StPicoDstReader*)
    {
-      return GenerateInitInstanceLocal(static_cast<::StPicoDstReader*>(nullptr));
+      return GenerateInitInstanceLocal((::StPicoDstReader*)nullptr);
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::StPicoDstReader*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const ::StPicoDstReader*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
 } // end of namespace ROOT
 
 namespace ROOT {
@@ -263,10 +263,10 @@ namespace ROOT {
    }
    TGenericClassInfo *GenerateInitInstance(const ::StPicoHelix*)
    {
-      return GenerateInitInstanceLocal(static_cast<::StPicoHelix*>(nullptr));
+      return GenerateInitInstanceLocal((::StPicoHelix*)nullptr);
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::StPicoHelix*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const ::StPicoHelix*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
 } // end of namespace ROOT
 
 namespace ROOT {
@@ -295,10 +295,10 @@ namespace ROOT {
    }
    TGenericClassInfo *GenerateInitInstance(const ::StPicoMtdPidTraits*)
    {
-      return GenerateInitInstanceLocal(static_cast<::StPicoMtdPidTraits*>(nullptr));
+      return GenerateInitInstanceLocal((::StPicoMtdPidTraits*)nullptr);
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::StPicoMtdPidTraits*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const ::StPicoMtdPidTraits*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
 } // end of namespace ROOT
 
 namespace ROOT {
@@ -327,10 +327,10 @@ namespace ROOT {
    }
    TGenericClassInfo *GenerateInitInstance(const ::StPicoETofPidTraits*)
    {
-      return GenerateInitInstanceLocal(static_cast<::StPicoETofPidTraits*>(nullptr));
+      return GenerateInitInstanceLocal((::StPicoETofPidTraits*)nullptr);
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::StPicoETofPidTraits*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const ::StPicoETofPidTraits*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
 } // end of namespace ROOT
 
 namespace ROOT {
@@ -359,10 +359,10 @@ namespace ROOT {
    }
    TGenericClassInfo *GenerateInitInstance(const ::StPicoETofHit*)
    {
-      return GenerateInitInstanceLocal(static_cast<::StPicoETofHit*>(nullptr));
+      return GenerateInitInstanceLocal((::StPicoETofHit*)nullptr);
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::StPicoETofHit*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const ::StPicoETofHit*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
 } // end of namespace ROOT
 
 namespace ROOT {
@@ -391,10 +391,10 @@ namespace ROOT {
    }
    TGenericClassInfo *GenerateInitInstance(const ::StPicoBTofPidTraits*)
    {
-      return GenerateInitInstanceLocal(static_cast<::StPicoBTofPidTraits*>(nullptr));
+      return GenerateInitInstanceLocal((::StPicoBTofPidTraits*)nullptr);
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::StPicoBTofPidTraits*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const ::StPicoBTofPidTraits*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
 } // end of namespace ROOT
 
 namespace ROOT {
@@ -423,10 +423,10 @@ namespace ROOT {
    }
    TGenericClassInfo *GenerateInitInstance(const ::StPicoEmcTrigger*)
    {
-      return GenerateInitInstanceLocal(static_cast<::StPicoEmcTrigger*>(nullptr));
+      return GenerateInitInstanceLocal((::StPicoEmcTrigger*)nullptr);
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::StPicoEmcTrigger*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const ::StPicoEmcTrigger*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
 } // end of namespace ROOT
 
 namespace ROOT {
@@ -455,10 +455,10 @@ namespace ROOT {
    }
    TGenericClassInfo *GenerateInitInstance(const ::StPicoBTofHit*)
    {
-      return GenerateInitInstanceLocal(static_cast<::StPicoBTofHit*>(nullptr));
+      return GenerateInitInstanceLocal((::StPicoBTofHit*)nullptr);
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::StPicoBTofHit*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const ::StPicoBTofHit*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
 } // end of namespace ROOT
 
 namespace ROOT {
@@ -487,10 +487,10 @@ namespace ROOT {
    }
    TGenericClassInfo *GenerateInitInstance(const ::StPicoBTowHit*)
    {
-      return GenerateInitInstanceLocal(static_cast<::StPicoBTowHit*>(nullptr));
+      return GenerateInitInstanceLocal((::StPicoBTowHit*)nullptr);
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::StPicoBTowHit*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const ::StPicoBTowHit*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
 } // end of namespace ROOT
 
 namespace ROOT {
@@ -519,10 +519,10 @@ namespace ROOT {
    }
    TGenericClassInfo *GenerateInitInstance(const ::StPicoMtdTrigger*)
    {
-      return GenerateInitInstanceLocal(static_cast<::StPicoMtdTrigger*>(nullptr));
+      return GenerateInitInstanceLocal((::StPicoMtdTrigger*)nullptr);
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::StPicoMtdTrigger*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const ::StPicoMtdTrigger*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
 } // end of namespace ROOT
 
 namespace ROOT {
@@ -551,10 +551,10 @@ namespace ROOT {
    }
    TGenericClassInfo *GenerateInitInstance(const ::StPicoBbcHit*)
    {
-      return GenerateInitInstanceLocal(static_cast<::StPicoBbcHit*>(nullptr));
+      return GenerateInitInstanceLocal((::StPicoBbcHit*)nullptr);
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::StPicoBbcHit*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const ::StPicoBbcHit*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
 } // end of namespace ROOT
 
 namespace ROOT {
@@ -583,10 +583,10 @@ namespace ROOT {
    }
    TGenericClassInfo *GenerateInitInstance(const ::StPicoPhysicalHelix*)
    {
-      return GenerateInitInstanceLocal(static_cast<::StPicoPhysicalHelix*>(nullptr));
+      return GenerateInitInstanceLocal((::StPicoPhysicalHelix*)nullptr);
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::StPicoPhysicalHelix*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const ::StPicoPhysicalHelix*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
 } // end of namespace ROOT
 
 namespace ROOT {
@@ -615,10 +615,10 @@ namespace ROOT {
    }
    TGenericClassInfo *GenerateInitInstance(const ::StPicoTrack*)
    {
-      return GenerateInitInstanceLocal(static_cast<::StPicoTrack*>(nullptr));
+      return GenerateInitInstanceLocal((::StPicoTrack*)nullptr);
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::StPicoTrack*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const ::StPicoTrack*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
 } // end of namespace ROOT
 
 namespace ROOT {
@@ -647,10 +647,10 @@ namespace ROOT {
    }
    TGenericClassInfo *GenerateInitInstance(const ::StPicoTrackCovMatrix*)
    {
-      return GenerateInitInstanceLocal(static_cast<::StPicoTrackCovMatrix*>(nullptr));
+      return GenerateInitInstanceLocal((::StPicoTrackCovMatrix*)nullptr);
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::StPicoTrackCovMatrix*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const ::StPicoTrackCovMatrix*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
 } // end of namespace ROOT
 
 namespace ROOT {
@@ -679,10 +679,10 @@ namespace ROOT {
    }
    TGenericClassInfo *GenerateInitInstance(const ::StPicoBEmcPidTraits*)
    {
-      return GenerateInitInstanceLocal(static_cast<::StPicoBEmcPidTraits*>(nullptr));
+      return GenerateInitInstanceLocal((::StPicoBEmcPidTraits*)nullptr);
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::StPicoBEmcPidTraits*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const ::StPicoBEmcPidTraits*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
 } // end of namespace ROOT
 
 namespace ROOT {
@@ -711,10 +711,10 @@ namespace ROOT {
    }
    TGenericClassInfo *GenerateInitInstance(const ::StPicoEpdHit*)
    {
-      return GenerateInitInstanceLocal(static_cast<::StPicoEpdHit*>(nullptr));
+      return GenerateInitInstanceLocal((::StPicoEpdHit*)nullptr);
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::StPicoEpdHit*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const ::StPicoEpdHit*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
 } // end of namespace ROOT
 
 namespace ROOT {
@@ -743,10 +743,10 @@ namespace ROOT {
    }
    TGenericClassInfo *GenerateInitInstance(const ::StPicoBEmcSmdPHit*)
    {
-      return GenerateInitInstanceLocal(static_cast<::StPicoBEmcSmdPHit*>(nullptr));
+      return GenerateInitInstanceLocal((::StPicoBEmcSmdPHit*)nullptr);
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::StPicoBEmcSmdPHit*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const ::StPicoBEmcSmdPHit*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
 } // end of namespace ROOT
 
 namespace ROOT {
@@ -775,10 +775,10 @@ namespace ROOT {
    }
    TGenericClassInfo *GenerateInitInstance(const ::StPicoFmsHit*)
    {
-      return GenerateInitInstanceLocal(static_cast<::StPicoFmsHit*>(nullptr));
+      return GenerateInitInstanceLocal((::StPicoFmsHit*)nullptr);
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::StPicoFmsHit*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const ::StPicoFmsHit*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
 } // end of namespace ROOT
 
 //______________________________________________________________________________
@@ -1538,14 +1538,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_StPicoMtdHit(void *p) {
-      delete (static_cast<::StPicoMtdHit*>(p));
+      delete ((::StPicoMtdHit*)p);
    }
    static void deleteArray_StPicoMtdHit(void *p) {
-      delete [] (static_cast<::StPicoMtdHit*>(p));
+      delete [] ((::StPicoMtdHit*)p);
    }
    static void destruct_StPicoMtdHit(void *p) {
       typedef ::StPicoMtdHit current_t;
-      (static_cast<current_t*>(p))->~current_t();
+      ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class ::StPicoMtdHit
 
@@ -1571,14 +1571,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_StPicoBEmcSmdEHit(void *p) {
-      delete (static_cast<::StPicoBEmcSmdEHit*>(p));
+      delete ((::StPicoBEmcSmdEHit*)p);
    }
    static void deleteArray_StPicoBEmcSmdEHit(void *p) {
-      delete [] (static_cast<::StPicoBEmcSmdEHit*>(p));
+      delete [] ((::StPicoBEmcSmdEHit*)p);
    }
    static void destruct_StPicoBEmcSmdEHit(void *p) {
       typedef ::StPicoBEmcSmdEHit current_t;
-      (static_cast<current_t*>(p))->~current_t();
+      ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class ::StPicoBEmcSmdEHit
 
@@ -1592,14 +1592,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_StPicoDst(void *p) {
-      delete (static_cast<::StPicoDst*>(p));
+      delete ((::StPicoDst*)p);
    }
    static void deleteArray_StPicoDst(void *p) {
-      delete [] (static_cast<::StPicoDst*>(p));
+      delete [] ((::StPicoDst*)p);
    }
    static void destruct_StPicoDst(void *p) {
       typedef ::StPicoDst current_t;
-      (static_cast<current_t*>(p))->~current_t();
+      ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class ::StPicoDst
 
@@ -1625,14 +1625,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_StPicoEvent(void *p) {
-      delete (static_cast<::StPicoEvent*>(p));
+      delete ((::StPicoEvent*)p);
    }
    static void deleteArray_StPicoEvent(void *p) {
-      delete [] (static_cast<::StPicoEvent*>(p));
+      delete [] ((::StPicoEvent*)p);
    }
    static void destruct_StPicoEvent(void *p) {
       typedef ::StPicoEvent current_t;
-      (static_cast<current_t*>(p))->~current_t();
+      ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class ::StPicoEvent
 
@@ -1651,14 +1651,14 @@ void StPicoDstReader::Streamer(TBuffer &R__b)
 namespace ROOT {
    // Wrapper around operator delete
    static void delete_StPicoDstReader(void *p) {
-      delete (static_cast<::StPicoDstReader*>(p));
+      delete ((::StPicoDstReader*)p);
    }
    static void deleteArray_StPicoDstReader(void *p) {
-      delete [] (static_cast<::StPicoDstReader*>(p));
+      delete [] ((::StPicoDstReader*)p);
    }
    static void destruct_StPicoDstReader(void *p) {
       typedef ::StPicoDstReader current_t;
-      (static_cast<current_t*>(p))->~current_t();
+      ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class ::StPicoDstReader
 
@@ -1684,14 +1684,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_StPicoHelix(void *p) {
-      delete (static_cast<::StPicoHelix*>(p));
+      delete ((::StPicoHelix*)p);
    }
    static void deleteArray_StPicoHelix(void *p) {
-      delete [] (static_cast<::StPicoHelix*>(p));
+      delete [] ((::StPicoHelix*)p);
    }
    static void destruct_StPicoHelix(void *p) {
       typedef ::StPicoHelix current_t;
-      (static_cast<current_t*>(p))->~current_t();
+      ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class ::StPicoHelix
 
@@ -1717,14 +1717,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_StPicoMtdPidTraits(void *p) {
-      delete (static_cast<::StPicoMtdPidTraits*>(p));
+      delete ((::StPicoMtdPidTraits*)p);
    }
    static void deleteArray_StPicoMtdPidTraits(void *p) {
-      delete [] (static_cast<::StPicoMtdPidTraits*>(p));
+      delete [] ((::StPicoMtdPidTraits*)p);
    }
    static void destruct_StPicoMtdPidTraits(void *p) {
       typedef ::StPicoMtdPidTraits current_t;
-      (static_cast<current_t*>(p))->~current_t();
+      ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class ::StPicoMtdPidTraits
 
@@ -1750,14 +1750,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_StPicoETofPidTraits(void *p) {
-      delete (static_cast<::StPicoETofPidTraits*>(p));
+      delete ((::StPicoETofPidTraits*)p);
    }
    static void deleteArray_StPicoETofPidTraits(void *p) {
-      delete [] (static_cast<::StPicoETofPidTraits*>(p));
+      delete [] ((::StPicoETofPidTraits*)p);
    }
    static void destruct_StPicoETofPidTraits(void *p) {
       typedef ::StPicoETofPidTraits current_t;
-      (static_cast<current_t*>(p))->~current_t();
+      ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class ::StPicoETofPidTraits
 
@@ -1783,14 +1783,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_StPicoETofHit(void *p) {
-      delete (static_cast<::StPicoETofHit*>(p));
+      delete ((::StPicoETofHit*)p);
    }
    static void deleteArray_StPicoETofHit(void *p) {
-      delete [] (static_cast<::StPicoETofHit*>(p));
+      delete [] ((::StPicoETofHit*)p);
    }
    static void destruct_StPicoETofHit(void *p) {
       typedef ::StPicoETofHit current_t;
-      (static_cast<current_t*>(p))->~current_t();
+      ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class ::StPicoETofHit
 
@@ -1816,14 +1816,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_StPicoBTofPidTraits(void *p) {
-      delete (static_cast<::StPicoBTofPidTraits*>(p));
+      delete ((::StPicoBTofPidTraits*)p);
    }
    static void deleteArray_StPicoBTofPidTraits(void *p) {
-      delete [] (static_cast<::StPicoBTofPidTraits*>(p));
+      delete [] ((::StPicoBTofPidTraits*)p);
    }
    static void destruct_StPicoBTofPidTraits(void *p) {
       typedef ::StPicoBTofPidTraits current_t;
-      (static_cast<current_t*>(p))->~current_t();
+      ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class ::StPicoBTofPidTraits
 
@@ -1849,14 +1849,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_StPicoEmcTrigger(void *p) {
-      delete (static_cast<::StPicoEmcTrigger*>(p));
+      delete ((::StPicoEmcTrigger*)p);
    }
    static void deleteArray_StPicoEmcTrigger(void *p) {
-      delete [] (static_cast<::StPicoEmcTrigger*>(p));
+      delete [] ((::StPicoEmcTrigger*)p);
    }
    static void destruct_StPicoEmcTrigger(void *p) {
       typedef ::StPicoEmcTrigger current_t;
-      (static_cast<current_t*>(p))->~current_t();
+      ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class ::StPicoEmcTrigger
 
@@ -1882,14 +1882,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_StPicoBTofHit(void *p) {
-      delete (static_cast<::StPicoBTofHit*>(p));
+      delete ((::StPicoBTofHit*)p);
    }
    static void deleteArray_StPicoBTofHit(void *p) {
-      delete [] (static_cast<::StPicoBTofHit*>(p));
+      delete [] ((::StPicoBTofHit*)p);
    }
    static void destruct_StPicoBTofHit(void *p) {
       typedef ::StPicoBTofHit current_t;
-      (static_cast<current_t*>(p))->~current_t();
+      ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class ::StPicoBTofHit
 
@@ -1915,14 +1915,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_StPicoBTowHit(void *p) {
-      delete (static_cast<::StPicoBTowHit*>(p));
+      delete ((::StPicoBTowHit*)p);
    }
    static void deleteArray_StPicoBTowHit(void *p) {
-      delete [] (static_cast<::StPicoBTowHit*>(p));
+      delete [] ((::StPicoBTowHit*)p);
    }
    static void destruct_StPicoBTowHit(void *p) {
       typedef ::StPicoBTowHit current_t;
-      (static_cast<current_t*>(p))->~current_t();
+      ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class ::StPicoBTowHit
 
@@ -1948,14 +1948,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_StPicoMtdTrigger(void *p) {
-      delete (static_cast<::StPicoMtdTrigger*>(p));
+      delete ((::StPicoMtdTrigger*)p);
    }
    static void deleteArray_StPicoMtdTrigger(void *p) {
-      delete [] (static_cast<::StPicoMtdTrigger*>(p));
+      delete [] ((::StPicoMtdTrigger*)p);
    }
    static void destruct_StPicoMtdTrigger(void *p) {
       typedef ::StPicoMtdTrigger current_t;
-      (static_cast<current_t*>(p))->~current_t();
+      ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class ::StPicoMtdTrigger
 
@@ -1981,14 +1981,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_StPicoBbcHit(void *p) {
-      delete (static_cast<::StPicoBbcHit*>(p));
+      delete ((::StPicoBbcHit*)p);
    }
    static void deleteArray_StPicoBbcHit(void *p) {
-      delete [] (static_cast<::StPicoBbcHit*>(p));
+      delete [] ((::StPicoBbcHit*)p);
    }
    static void destruct_StPicoBbcHit(void *p) {
       typedef ::StPicoBbcHit current_t;
-      (static_cast<current_t*>(p))->~current_t();
+      ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class ::StPicoBbcHit
 
@@ -2014,14 +2014,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_StPicoPhysicalHelix(void *p) {
-      delete (static_cast<::StPicoPhysicalHelix*>(p));
+      delete ((::StPicoPhysicalHelix*)p);
    }
    static void deleteArray_StPicoPhysicalHelix(void *p) {
-      delete [] (static_cast<::StPicoPhysicalHelix*>(p));
+      delete [] ((::StPicoPhysicalHelix*)p);
    }
    static void destruct_StPicoPhysicalHelix(void *p) {
       typedef ::StPicoPhysicalHelix current_t;
-      (static_cast<current_t*>(p))->~current_t();
+      ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class ::StPicoPhysicalHelix
 
@@ -2047,14 +2047,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_StPicoTrack(void *p) {
-      delete (static_cast<::StPicoTrack*>(p));
+      delete ((::StPicoTrack*)p);
    }
    static void deleteArray_StPicoTrack(void *p) {
-      delete [] (static_cast<::StPicoTrack*>(p));
+      delete [] ((::StPicoTrack*)p);
    }
    static void destruct_StPicoTrack(void *p) {
       typedef ::StPicoTrack current_t;
-      (static_cast<current_t*>(p))->~current_t();
+      ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class ::StPicoTrack
 
@@ -2080,14 +2080,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_StPicoTrackCovMatrix(void *p) {
-      delete (static_cast<::StPicoTrackCovMatrix*>(p));
+      delete ((::StPicoTrackCovMatrix*)p);
    }
    static void deleteArray_StPicoTrackCovMatrix(void *p) {
-      delete [] (static_cast<::StPicoTrackCovMatrix*>(p));
+      delete [] ((::StPicoTrackCovMatrix*)p);
    }
    static void destruct_StPicoTrackCovMatrix(void *p) {
       typedef ::StPicoTrackCovMatrix current_t;
-      (static_cast<current_t*>(p))->~current_t();
+      ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class ::StPicoTrackCovMatrix
 
@@ -2113,14 +2113,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_StPicoBEmcPidTraits(void *p) {
-      delete (static_cast<::StPicoBEmcPidTraits*>(p));
+      delete ((::StPicoBEmcPidTraits*)p);
    }
    static void deleteArray_StPicoBEmcPidTraits(void *p) {
-      delete [] (static_cast<::StPicoBEmcPidTraits*>(p));
+      delete [] ((::StPicoBEmcPidTraits*)p);
    }
    static void destruct_StPicoBEmcPidTraits(void *p) {
       typedef ::StPicoBEmcPidTraits current_t;
-      (static_cast<current_t*>(p))->~current_t();
+      ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class ::StPicoBEmcPidTraits
 
@@ -2146,14 +2146,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_StPicoEpdHit(void *p) {
-      delete (static_cast<::StPicoEpdHit*>(p));
+      delete ((::StPicoEpdHit*)p);
    }
    static void deleteArray_StPicoEpdHit(void *p) {
-      delete [] (static_cast<::StPicoEpdHit*>(p));
+      delete [] ((::StPicoEpdHit*)p);
    }
    static void destruct_StPicoEpdHit(void *p) {
       typedef ::StPicoEpdHit current_t;
-      (static_cast<current_t*>(p))->~current_t();
+      ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class ::StPicoEpdHit
 
@@ -2179,14 +2179,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_StPicoBEmcSmdPHit(void *p) {
-      delete (static_cast<::StPicoBEmcSmdPHit*>(p));
+      delete ((::StPicoBEmcSmdPHit*)p);
    }
    static void deleteArray_StPicoBEmcSmdPHit(void *p) {
-      delete [] (static_cast<::StPicoBEmcSmdPHit*>(p));
+      delete [] ((::StPicoBEmcSmdPHit*)p);
    }
    static void destruct_StPicoBEmcSmdPHit(void *p) {
       typedef ::StPicoBEmcSmdPHit current_t;
-      (static_cast<current_t*>(p))->~current_t();
+      ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class ::StPicoBEmcSmdPHit
 
@@ -2212,14 +2212,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_StPicoFmsHit(void *p) {
-      delete (static_cast<::StPicoFmsHit*>(p));
+      delete ((::StPicoFmsHit*)p);
    }
    static void deleteArray_StPicoFmsHit(void *p) {
-      delete [] (static_cast<::StPicoFmsHit*>(p));
+      delete [] ((::StPicoFmsHit*)p);
    }
    static void destruct_StPicoFmsHit(void *p) {
       typedef ::StPicoFmsHit current_t;
-      (static_cast<current_t*>(p))->~current_t();
+      ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class ::StPicoFmsHit
 
@@ -2253,11 +2253,11 @@ namespace ROOT {
       return &instance;
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const vector<unsigned short>*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const vector<unsigned short>*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
 
    // Dictionary for non-ClassDef classes
    static TClass *vectorlEunsignedsPshortgR_Dictionary() {
-      TClass* theClass =::ROOT::GenerateInitInstanceLocal(static_cast<const vector<unsigned short>*>(nullptr))->GetClass();
+      TClass* theClass =::ROOT::GenerateInitInstanceLocal((const vector<unsigned short>*)nullptr)->GetClass();
       vectorlEunsignedsPshortgR_TClassManip(theClass);
    return theClass;
    }
@@ -2277,14 +2277,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_vectorlEunsignedsPshortgR(void *p) {
-      delete (static_cast<vector<unsigned short>*>(p));
+      delete ((vector<unsigned short>*)p);
    }
    static void deleteArray_vectorlEunsignedsPshortgR(void *p) {
-      delete [] (static_cast<vector<unsigned short>*>(p));
+      delete [] ((vector<unsigned short>*)p);
    }
    static void destruct_vectorlEunsignedsPshortgR(void *p) {
       typedef vector<unsigned short> current_t;
-      (static_cast<current_t*>(p))->~current_t();
+      ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class vector<unsigned short>
 
@@ -2318,11 +2318,11 @@ namespace ROOT {
       return &instance;
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const vector<unsigned int>*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const vector<unsigned int>*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
 
    // Dictionary for non-ClassDef classes
    static TClass *vectorlEunsignedsPintgR_Dictionary() {
-      TClass* theClass =::ROOT::GenerateInitInstanceLocal(static_cast<const vector<unsigned int>*>(nullptr))->GetClass();
+      TClass* theClass =::ROOT::GenerateInitInstanceLocal((const vector<unsigned int>*)nullptr)->GetClass();
       vectorlEunsignedsPintgR_TClassManip(theClass);
    return theClass;
    }
@@ -2342,14 +2342,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_vectorlEunsignedsPintgR(void *p) {
-      delete (static_cast<vector<unsigned int>*>(p));
+      delete ((vector<unsigned int>*)p);
    }
    static void deleteArray_vectorlEunsignedsPintgR(void *p) {
-      delete [] (static_cast<vector<unsigned int>*>(p));
+      delete [] ((vector<unsigned int>*)p);
    }
    static void destruct_vectorlEunsignedsPintgR(void *p) {
       typedef vector<unsigned int> current_t;
-      (static_cast<current_t*>(p))->~current_t();
+      ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class vector<unsigned int>
 
@@ -2386,8 +2386,8 @@ namespace {
 nullptr
     };
     static const char* includePaths[] = {
-"/home/ubuntu/folder/root/include",
-"/home/ubuntu/folder/root/include/",
+"/home/ubuntu/root/include",
+"/home/ubuntu/root/include/",
 "/home/ubuntu/folder/macros/StPicoEvent/",
 nullptr
     };

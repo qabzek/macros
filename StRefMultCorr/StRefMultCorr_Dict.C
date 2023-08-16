@@ -10,7 +10,7 @@
 #include <string.h>
 #include <assert.h>
 #define G__DICTIONARY
-#include "ROOT/RConfig.hxx"
+#include "RConfig.h"
 #include "TClass.h"
 #include "TDictAttributeMap.h"
 #include "TInterpreter.h"
@@ -71,10 +71,10 @@ namespace ROOT {
    }
    TGenericClassInfo *GenerateInitInstance(const ::StRefMultCorr*)
    {
-      return GenerateInitInstanceLocal(static_cast<::StRefMultCorr*>(nullptr));
+      return GenerateInitInstanceLocal((::StRefMultCorr*)nullptr);
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::StRefMultCorr*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const ::StRefMultCorr*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
 } // end of namespace ROOT
 
 namespace ROOT {
@@ -99,10 +99,10 @@ namespace ROOT {
    }
    TGenericClassInfo *GenerateInitInstance(const ::CentralityMaker*)
    {
-      return GenerateInitInstanceLocal(static_cast<::CentralityMaker*>(nullptr));
+      return GenerateInitInstanceLocal((::CentralityMaker*)nullptr);
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::CentralityMaker*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const ::CentralityMaker*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
 } // end of namespace ROOT
 
 //______________________________________________________________________________
@@ -197,14 +197,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_StRefMultCorr(void *p) {
-      delete (static_cast<::StRefMultCorr*>(p));
+      delete ((::StRefMultCorr*)p);
    }
    static void deleteArray_StRefMultCorr(void *p) {
-      delete [] (static_cast<::StRefMultCorr*>(p));
+      delete [] ((::StRefMultCorr*)p);
    }
    static void destruct_StRefMultCorr(void *p) {
       typedef ::StRefMultCorr current_t;
-      (static_cast<current_t*>(p))->~current_t();
+      ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class ::StRefMultCorr
 
@@ -223,14 +223,14 @@ void CentralityMaker::Streamer(TBuffer &R__b)
 namespace ROOT {
    // Wrapper around operator delete
    static void delete_CentralityMaker(void *p) {
-      delete (static_cast<::CentralityMaker*>(p));
+      delete ((::CentralityMaker*)p);
    }
    static void deleteArray_CentralityMaker(void *p) {
-      delete [] (static_cast<::CentralityMaker*>(p));
+      delete [] ((::CentralityMaker*)p);
    }
    static void destruct_CentralityMaker(void *p) {
       typedef ::CentralityMaker current_t;
-      (static_cast<current_t*>(p))->~current_t();
+      ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class ::CentralityMaker
 
@@ -244,8 +244,8 @@ namespace {
 nullptr
     };
     static const char* includePaths[] = {
-"/home/ubuntu/folder/root/include",
-"/home/ubuntu/folder/root/include/",
+"/home/ubuntu/root/include",
+"/home/ubuntu/root/include/",
 "/home/ubuntu/folder/macros/StRefMultCorr/",
 nullptr
     };

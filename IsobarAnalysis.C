@@ -43,7 +43,7 @@ R__LOAD_LIBRARY(StRefMultCorr/libStRefMultCorr);
 gSystem->Load("StPicoEvent/libStRefMultCorr.so");
 #endif
 
-const Char_t *defaultOutFile = "home/ubuntu/folder/1Myresults/isobar_RuRu_2018.root";
+const Char_t *defaultOutFile = "../1Myresults/isobar_RuRu_2018.root";
 
 int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/folder/isobar_files/production_isobar_2018/RuRu/st_physics_*.picoDst.root", const Char_t *outFileName = defaultOutFile)
 {
@@ -67,7 +67,7 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/folder/isobar_files/prod
     TH1D *hist_CentCount = new TH1D("CentCount", "CentCount", 10, 0, 10);
 
     Long64_t events2read = picoReader->chain()->GetEntries();
-    for (Long64_t iEvent = 0; iEvent < 5000; iEvent++)
+    for (Long64_t iEvent = 0; iEvent < events2read; iEvent++)
     {
 
         Int_t multCounter = 0;
