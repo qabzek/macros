@@ -21,7 +21,8 @@ TH1D *hspectra[6][9];
 TH1D *h1D[2][11];
 TH2D *h2D[2][6];
 TH1D *hPt[9];
-TH1D *h_py[2][30];
+TH1D *hdedx_py;
+TH1D *hbeta_py;
 TH1D *hCentCount;
 Float_t Nevents;
 TCanvas *c;
@@ -37,11 +38,9 @@ TString name[17]      = {"mult", "Vz", "Eta", "pHits", "pHitsFit", "pHitsMax", "
 TString centc[9]      = {"70-80", "60-70", "50-60", "40-50", "30-40", "20-30", "10-20", "5-10", "0-5"};
 int col[9]            = {1,632,600,416,840,616,880,800,900};
 int marker[9]         = {20,21,25,24,22,26,29,30,31}; 
-double x[31]          = {0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1,
-                         1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2,
-                         2.2,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3,3.1};
-double xmax[17]       = {0,0,0,0,0,0,0,0,0,0,0,10,2,0,0.4,0};
-double xmin[17]       = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,-0.4,0};
+Double_t x[45]        = {0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1,1.05,
+                         1.1,1.15,1.2,1.25,1.3,1.35,1.4,1.45,1.5,1.55,1.6,1.65,1.7,1.75,1.8,1.85,1.9,1.95,2,2.05,
+                         2.1,2.15,2.2,2.25,2.3};
 TString part[6]       = {"pip","pim","kap","kam","pr","pm"};
               
 
@@ -124,25 +123,44 @@ void plotPt()
 }
 void pid()
 {
-    for(int j=12;j<14;j++)
+    
+    
+    file->GetObject("hist_pDedx_after", h2D[1][12]);
+    for(int i=0;i<45;i++)
     {
-    file->GetObject(Form("hist_%s_after",name[j].Data()), h2D[1][j]);
-    for(int i=0;i<30;i++)
-    {
+        legend = new TLegend(0.6,0.7,0.9,0.9);
         c1 = new TCanvas();
     
         Double_t firstx = x[i], lastx = x[i+1];
-        Int_t firstxbin = h2D[1][j]->GetXaxis()->FindFixBin(firstx);
-        Int_t lastxbin = h2D[1][j]->GetXaxis()->FindFixBin(lastx);
-        h_py[j][i] = new TH1D(Form("%s_py_%f_%f",name[j].Data(),firstx,lastx),Form("%s projection at p = %f-%f GeV/c",name[j].Data(),firstx,lastx),40,xmin[j],xmax[j]);
-        h_py[j][i] = h2D[1][j]->ProjectionY("_py", firstxbin, lastxbin, "");
+        Int_t firstxbin = h2D[1][12]->GetXaxis()->FindFixBin(firstx);
+        Int_t lastxbin = h2D[1][12]->GetXaxis()->FindFixBin(lastx);
+        hdedx_py = h2D[1][12]->ProjectionY("_py", firstxbin, lastxbin, "");
+        hdedx_py->SetAxisRange(0,20,"X");
         gPad->SetLogy();
-        h_py[j][i]->Draw();
-        c1->SaveAs(Form("/home/ubuntu/folder/1Myresults/isobar_2018/RuRu/PID/%s_py_%f_%f.png",name[j].Data(),firstx,lastx));
+        hdedx_py->Draw();
+        legend->AddEntry(hdedx_py,Form("p/q (%f-%f) [GeV/c]",x[i],x[i+1]),"lp");
+        legend->Draw();
+        c1->SaveAs(Form("/home/ubuntu/folder/1Myresults/isobar_2018/RuRu/PID/%s_py_%f_%f.png",name[12].Data(),firstx,lastx));
     }
+
+    file->GetObject("hist_reverseBeta_after", h2D[1][13]);
+    for(int i=0;i<45;i++)
+    {
+        legend = new TLegend(0.6,0.7,0.9,0.9);
+        c1 = new TCanvas();
+    
+        Double_t firstx = x[i], lastx = x[i+1];
+        Int_t firstxbin = h2D[1][13]->GetXaxis()->FindFixBin(firstx);
+        Int_t lastxbin = h2D[1][13]->GetXaxis()->FindFixBin(lastx);
+        hbeta_py = h2D[1][13]->ProjectionY("_py", firstxbin, lastxbin, "");
+        hbeta_py->SetAxisRange(0,2.5,"X");
+        gPad->SetLogy();
+        hbeta_py->Draw();
+        legend->AddEntry(hbeta_py,Form("p/q (%f-%f) [GeV/c]",x[i],x[i+1]),"lp");
+        legend->Draw();
+        c1->SaveAs(Form("/home/ubuntu/folder/1Myresults/isobar_2018/RuRu/PID/%s_py_%f_%f.png",name[13].Data(),firstx,lastx));
     }
-    //file->GetObject("hist_reverseBeta_after", hist_revbeta);
-    //file->GetObject("hist_squaredMass_after", hist_msq);
+    
     
 }
 int plots()
