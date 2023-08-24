@@ -38,9 +38,9 @@ TString name[17]      = {"mult", "Vz", "Eta", "pHits", "pHitsFit", "pHitsMax", "
 TString centc[9]      = {"70-80", "60-70", "50-60", "40-50", "30-40", "20-30", "10-20", "5-10", "0-5"};
 int col[9]            = {1,632,600,416,840,616,880,800,900};
 int marker[9]         = {20,21,25,24,22,26,29,30,31}; 
-Double_t x[45]        = {0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1,1.05,
-                         1.1,1.15,1.2,1.25,1.3,1.35,1.4,1.45,1.5,1.55,1.6,1.65,1.7,1.75,1.8,1.85,1.9,1.95,2,2.05,
-                         2.1,2.15,2.2,2.25,2.3};
+Double_t x[75]        = {
+                         0.1,0.125,0.15,0.175,0.2,0.225,0.25,0.275,0.3,0.325,0.35,0.375,0.4,0.425,0.45,0.475,0.5,0.525,0.55,0.575,0.6,0.625,0.65,0.675,0.7,0.725,0.75,0.775,0.8,0.825,0.85,0.875,0.9,0.925,0.95,0.975,1,1.05,
+                         1.1,1.125,1.15,1.175,1.2,1.225,1.25,1.275,1.3,1.325,1.35,1.375,1.4,1.425,1.45,1.475,1.5,1.525,1.55,1.575,1.6,1.625,1.65,1.675,1.7,1.725,1.75,1.775,1.8,1.825,1.85,1.875,1.9,1.925,1.95,1.975,2};
 TString part[6]       = {"pip","pim","kap","kam","pr","pm"};
               
 
@@ -125,17 +125,17 @@ void pid()
 {
     
     
-    file->GetObject("hist_pDedx_after", h2D[1][12]);
-    for(int i=0;i<45;i++)
+    file->GetObject("hist_pDedx_after", h2D[1][1]);
+    for(int i=0;i<75;i++)
     {
         legend = new TLegend(0.6,0.7,0.9,0.9);
         c1 = new TCanvas();
     
         Double_t firstx = x[i], lastx = x[i+1];
-        Int_t firstxbin = h2D[1][12]->GetXaxis()->FindFixBin(firstx);
-        Int_t lastxbin = h2D[1][12]->GetXaxis()->FindFixBin(lastx);
-        hdedx_py = h2D[1][12]->ProjectionY("_py", firstxbin, lastxbin, "");
-        hdedx_py->SetAxisRange(0,20,"X");
+        Int_t firstxbin = h2D[1][1]->GetXaxis()->FindFixBin(firstx);
+        Int_t lastxbin = h2D[1][1]->GetXaxis()->FindFixBin(lastx);
+        hdedx_py = h2D[1][1]->ProjectionY("_py", firstxbin, lastxbin, "");
+        //hdedx_py->SetAxisRange(0,20,"X");
         gPad->SetLogy();
         hdedx_py->Draw();
         legend->AddEntry(hdedx_py,Form("p/q (%f-%f) [GeV/c]",x[i],x[i+1]),"lp");
@@ -143,17 +143,17 @@ void pid()
         c1->SaveAs(Form("/home/ubuntu/folder/1Myresults/isobar_2018/RuRu/PID/%s_py_%f_%f.png",name[12].Data(),firstx,lastx));
     }
 
-    file->GetObject("hist_reverseBeta_after", h2D[1][13]);
+    file->GetObject("hist_reverseBeta_after", h2D[1][2]);
     for(int i=0;i<45;i++)
     {
         legend = new TLegend(0.6,0.7,0.9,0.9);
         c1 = new TCanvas();
     
         Double_t firstx = x[i], lastx = x[i+1];
-        Int_t firstxbin = h2D[1][13]->GetXaxis()->FindFixBin(firstx);
-        Int_t lastxbin = h2D[1][13]->GetXaxis()->FindFixBin(lastx);
-        hbeta_py = h2D[1][13]->ProjectionY("_py", firstxbin, lastxbin, "");
-        hbeta_py->SetAxisRange(0,2.5,"X");
+        Int_t firstxbin = h2D[1][2]->GetXaxis()->FindFixBin(firstx);
+        Int_t lastxbin = h2D[1][2]->GetXaxis()->FindFixBin(lastx);
+        hbeta_py = h2D[1][2]->ProjectionY("_py", firstxbin, lastxbin, "");
+        //hbeta_py->SetAxisRange(0,2.5,"X");
         gPad->SetLogy();
         hbeta_py->Draw();
         legend->AddEntry(hbeta_py,Form("p/q (%f-%f) [GeV/c]",x[i],x[i+1]),"lp");

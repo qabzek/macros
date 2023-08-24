@@ -206,6 +206,10 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/folder/isobar_files/prod
                 // fill Eta vs Pt
                 hist_EtaPt[1]->Fill(picoTrack->pPt(), picoTrack->pMom().Eta());
 
+                hist_nspion->Fill(picoTrack->nSigmaPion());
+                hist_nskaon->Fill(picoTrack->nSigmaKaon());
+                hist_nsproton->Fill(picoTrack->nSigmaProton());
+
                 // fill for TOF
                 if (picoTrack->isTofTrack())
                 {

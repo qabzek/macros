@@ -40,6 +40,9 @@ TH2D*hist_reverseBeta[config_cut];
 TH2D*hist_PhiPt[config_cut];
 TH2D*hist_EtaPt[config_cut];
 TH2D*hist_squaredMass[config_cut];
+TH1D*hist_nspion;
+TH1D*hist_nskaon;
+TH1D*hist_nsproton;
 
 void build()
 {
@@ -62,7 +65,11 @@ void build()
         hist_PhiPt[i]=new TH2D(Form("hist_PhiPt_%s",config[i].Data()),Form("Azimuthal angle vs transverse momenta %s cuts;p_{T}, (GeV/c);Phi, [rad]",config[i].Data()),1000,0,6.,1000,3.5,3.5);
         hist_EtaPt[i]=new TH2D(Form("hist_EtaPt_%s",config[i].Data()),Form("Pseudorapidity vs transverse momenta %s cuts;p_{T}, [GeV/c]",config[i].Data()),1000,0,7,1000,-2.6,2.6);
         hist_squaredMass[i]=new TH2D(Form("hist_squaredMass_%s",config[i].Data()),Form("Squared Mass %s cuts;;p_{T}/q, (GeV/c);m^{2}, (GeV)^{2}",config[i].Data()),1000,-3,3,1000,-0.5,1.5);
+
     }
+        hist_nspion = new TH1D("hist_nspion","nsigma pion",70,-35,35);
+        hist_nskaon = new TH1D("hist_nskaon","nsigma kaon",70,-35,35);
+        hist_nsproton = new TH1D("hist_nsproton","nsigma proton",70,-35,35);
 }
 
 void build_pt()
