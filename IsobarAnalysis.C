@@ -102,6 +102,8 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/folder/isobar_files/prod
         // Vz
         hist_Vz[0]->Fill(event->primaryVertex().Z());
 
+        Double_t tofBeta = -999;
+        Double_t mass2;
         // cut badruns PileUp and make centrality
         int cent9 = -999;
         double CentWeight;
@@ -167,6 +169,7 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/folder/isobar_files/prod
                         continue;
 
                     // Fill 1/beta
+                   
                     hist_reverseBeta[0]->Fill(picoTrack->pPtot() / picoTrack->charge(), 1. / trait->btofBeta());
                     // fill squared mass
                     hist_squaredMass[0]->Fill(picoTrack->pPt() / picoTrack->charge(), (1 / pow(trait->btofBeta(), 2) - 1) * pow(picoTrack->pPt(), 2));
@@ -217,36 +220,53 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/folder/isobar_files/prod
                     StPicoBTofPidTraits *trait = picoDst->btofPidTraits(picoTrack->bTofPidTraitsIndex());
                     if (!trait)
                         continue;
+                    
+
+                    tofBeta = trait->btofBeta();
+                    mass2 = (picoTrack->pPt() / picoTrack->charge(), (1 / pow(trait->btofBeta(), 2) - 1) * pow(picoTrack->pPt(), 2));
                     // Fill 1/beta
                     hist_reverseBeta[1]->Fill(picoTrack->pPtot() / picoTrack->charge(), 1. / trait->btofBeta());
                     // fill squared mass
                     hist_squaredMass[1]->Fill(picoTrack->pPt() / picoTrack->charge(), (1 / pow(trait->btofBeta(), 2) - 1) * pow(picoTrack->pPt(), 2));
                 }
                 // fill pt spectra for each centality
-                double dEta = 2, dPt;
-                dPt = (hist_pip[0]->GetBinCenter(hist_pip[0]->GetNbinsX()) - hist_pip[0]->GetBinCenter(0)) / hist_pip[0]->GetNbinsX();
+                double dEta = 2, dPtpip,dPtpim,dPtkap,dPtkam,dPtpr,dPtapr;
+                dPtpip = (hist_pip[0]->GetBinCenter(hist_pip[0]->GetNbinsX()) - hist_pip[0]->GetBinCenter(0)) / hist_pip[0]->GetNbinsX();
+                dPtpim = (hist_pim[0]->GetBinCenter(hist_pim[0]->GetNbinsX()) - hist_pim[0]->GetBinCenter(0)) / hist_pim[0]->GetNbinsX();
+                dPtkap = (hist_kap[0]->GetBinCenter(hist_kap[0]->GetNbinsX()) - hist_kap[0]->GetBinCenter(0)) / hist_kap[0]->GetNbinsX();
+                dPtkam = (hist_kam[0]->GetBinCenter(hist_kam[0]->GetNbinsX()) - hist_kam[0]->GetBinCenter(0)) / hist_kam[0]->GetNbinsX();
+                dPtpr = (hist_pr[0]->GetBinCenter(hist_pr[0]->GetNbinsX()) - hist_pr[0]->GetBinCenter(0)) / hist_pr[0]->GetNbinsX();
+                dPtapr = (hist_apr[0]->GetBinCenter(hist_apr[0]->GetNbinsX()) - hist_apr[0]->GetBinCenter(0)) / hist_apr[0]->GetNbinsX();
                 // hist_spectra[cent9]->Fill(picoTrack->pMom().Pt(), 1. / 2*M_PI * (picoTrack->pMom().Pt()) * dPt * dEta);
-                if (picoTrack->nSigmaPion() < 2)
+                if (TMath::Abs(picoTrack->nSigmaPion()) < 2 //&& TMath::Abs(picoTrack->nSigmaKaon()) > 3 && TMath::Abs(picoTrack->nSigmaProton()) > 3
+                    &&(tofBeta != -999 && mass2 > 0.001 && mass2 < 0.1)
+                   )
                 {
                     if (picoTrack->charge() == 1)
-                        hist_pip[cent9]->Fill(picoTrack->pMom().Pt(), 1. / 2 * M_PI * (picoTrack->pMom().Pt()) * dPt * dEta);
+                        hist_pip[cent9]->Fill(picoTrack->pMom().Pt(), 1. / 2 * M_PI * (picoTrack->pMom().Pt()) * dPtpip * dEta);
                     else
-                        hist_pim[cent9]->Fill(picoTrack->pMom().Pt(), 1. / 2 * M_PI * (picoTrack->pMom().Pt()) * dPt * dEta);
+                        hist_pim[cent9]->Fill(picoTrack->pMom().Pt(), 1. / 2 * M_PI * (picoTrack->pMom().Pt()) * dPtpim * dEta);
                 }
 
-                if (picoTrack->nSigmaKaon() < 3)
+                if (//TMath::Abs(picoTrack->nSigmaPion()) > 2 && 
+                TMath::Abs(picoTrack->nSigmaKaon()) < 3 //&& TMath::Abs(picoTrack->nSigmaProton()) > 3
+                    &&(tofBeta != -999 && mass2 > 0.18 && mass2 < 0.32)
+                   )
                 {
                     if (picoTrack->charge() == 1)
-                        hist_kap[cent9]->Fill(picoTrack->pMom().Pt(), 1. / 2 * M_PI * (picoTrack->pMom().Pt()) * dPt * dEta);
+                        hist_kap[cent9]->Fill(picoTrack->pMom().Pt(), 1. / 2 * M_PI * (picoTrack->pMom().Pt()) * dPtkap * dEta);
                     else
-                        hist_kam[cent9]->Fill(picoTrack->pMom().Pt(), 1. / 2 * M_PI * (picoTrack->pMom().Pt()) * dPt * dEta);
+                        hist_kam[cent9]->Fill(picoTrack->pMom().Pt(), 1. / 2 * M_PI * (picoTrack->pMom().Pt()) * dPtkam * dEta);
                 }
-                if (picoTrack->nSigmaProton() < 2)
+                if (//TMath::Abs(picoTrack->nSigmaPion()) > 2 && TMath::Abs(picoTrack->nSigmaKaon()) > 3 && 
+                TMath::Abs(picoTrack->nSigmaProton()) < 3
+                    &&(tofBeta != -999 && mass2 > 0.4 && mass2 < 1.1)
+                   )
                 {
                     if (picoTrack->charge() == 1)
-                        hist_pr[cent9]->Fill(picoTrack->pMom().Pt(), 1. / 2 * M_PI * (picoTrack->pMom().Pt()) * dPt * dEta);
+                        hist_pr[cent9]->Fill(picoTrack->pMom().Pt(), 1. / 2 * M_PI * (picoTrack->pMom().Pt()) * dPtpr * dEta);
                     else
-                        hist_apr[cent9]->Fill(picoTrack->pMom().Pt(), 1. / 2 * M_PI * (picoTrack->pMom().Pt()) * dPt * dEta);
+                        hist_apr[cent9]->Fill(picoTrack->pMom().Pt(), 1. / 2 * M_PI * (picoTrack->pMom().Pt()) * dPtapr * dEta);
                 }
             }
         }

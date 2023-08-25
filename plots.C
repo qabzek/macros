@@ -144,7 +144,7 @@ void pid()
     }
 
     file->GetObject("hist_reverseBeta_after", h2D[1][2]);
-    for(int i=0;i<45;i++)
+    for(int i=0;i<75;i++)
     {
         legend = new TLegend(0.6,0.7,0.9,0.9);
         c1 = new TCanvas();
@@ -168,7 +168,7 @@ int plots()
     gStyle->SetOptStat(0);
     //plot1D();
     //plot2D();
-    //plotPt();
+    plotPt();
     pid();
 
     return 0;
