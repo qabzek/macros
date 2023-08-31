@@ -88,8 +88,8 @@ void plotPt()
     //c1 = new TCanvas();    
     for(int k=0;k<6;k++)
     {
-    c = new TCanvas(); 
-    legend = new TLegend(0.6,0.7,0.9,0.9);
+    c = new TCanvas("", "", 1800,1000); 
+    legend = new TLegend(0.78,0.55,0.9,0.85);
     for (int i = 0; i < 9; i++)
     {
         file->GetObject(Form("hist_%s_cent%i", part[k].Data(), i), hspectra[k][i]);
@@ -99,12 +99,13 @@ void plotPt()
         Numbins = hspectra[k][i]->GetNbinsX();
         for(int j=0;j<Numbins;j++)
         {
-            hspectra[k][i]->SetBinContent(j, (hspectra[k][i]->GetBinContent(j)/Nevents) * pow(2,i));
+            hspectra[k][i]->SetBinContent(j, (hspectra[k][i]->GetBinContent(j)/Nevents) * pow(10,i));
             hspectra[k][i]->SetBinError(j, hspectra[k][i]->GetBinError(j)/Nevents);
         }
         hspectra[k][i]->Sumw2();
         hspectra[k][i]->Draw("same");
-        hspectra[k][i]->SetAxisRange(0.00001,10000,"Y");hspectra[k][i]->SetAxisRange(0.00001,10000,"X");
+        hspectra[k][i]->SetAxisRange(1e-9,1e10,"Y");
+        hspectra[k][i]->SetAxisRange(0,9,"X");
         gPad->SetLogy();
         hspectra[k][i]->SetXTitle("p_{T} [Gev/c]");
         hspectra[k][i]->SetYTitle("Yields");
@@ -112,9 +113,10 @@ void plotPt()
         hspectra[k][i]->SetMarkerColor(col[i]);
         hspectra[k][i]->SetMarkerStyle(marker[i]);
 
-        
-        legend->SetNColumns(3);
-        legend->AddEntry(hspectra[k][i],Form("%s",centc[i].Data()),"lp");
+        legend->SetTextSize(0.02);
+        legend->SetBorderSize(0);
+       // legend->SetNColumns(1);
+        legend->AddEntry(hspectra[k][i],Form("%s * 10^%i",centc[i].Data(), i),"p");
         legend->Draw();
         //c->SaveAs(Form("/home/ubuntu/folder/1Myresults/isobar_2018/RuRu/%s_spectra.png", centc[i].Data()));
     }
@@ -169,7 +171,7 @@ int plots()
     //plot1D();
     //plot2D();
     plotPt();
-    pid();
+    //pid();
 
     return 0;
 }
