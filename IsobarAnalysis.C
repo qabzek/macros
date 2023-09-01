@@ -17,6 +17,7 @@
 #include "TCanvas.h"
 
 // PicoDst headers
+#include "../StROOT/StPicoEvent/StPicoDstReader.h"
 #include "../StROOT/StPicoEvent/StPicoDst.h"
 #include "../StROOT/StPicoEvent/StPicoEvent.h"
 #include "../StROOT/StPicoEvent/StPicoTrack.h"
@@ -31,15 +32,15 @@
 #include "../StROOT/StRefMultCorr/Param.h"
 //_________________
 #if ROOT_VERSION_CODE >= ROOT_VERSION(6, 0, 0)
-R__LOAD_LIBRARY(./StPicoEvent/libStPicoDst);
+R__LOAD_LIBRARY(../StROOT/StPicoEvent/libStPicoDst);
 #else
-gSystem->Load("StPicoEvent/libStPicoDst.so");
+gSystem->Load("../StROOT/StPicoEvent/libStPicoDst.so");
 #endif
 
 #if ROOT_VERSION_CODE >= ROOT_VERSION(6, 0, 0)
-R__LOAD_LIBRARY(StRefMultCorr/libStRefMultCorr);
+R__LOAD_LIBRARY(../StROOT/StRefMultCorr/libStRefMultCorr);
 #else
-gSystem->Load("StPicoEvent/libStRefMultCorr.so");
+gSystem->Load("../StROOT/StRefMultCorr/libStRefMultCorr.so");
 #endif
 
 const Char_t *defaultOutFile = "../1Myresults/isobar_RuRu_2018.root";
