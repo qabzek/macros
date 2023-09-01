@@ -17,19 +17,18 @@
 #include "TCanvas.h"
 
 // PicoDst headers
-#include "StPicoEvent/StPicoDstReader.h"
-#include "StPicoEvent/StPicoDst.h"
-#include "StPicoEvent/StPicoEvent.h"
-#include "StPicoEvent/StPicoTrack.h"
-#include "StPicoEvent/StPicoBTofHit.h"
-#include "StPicoEvent/StPicoBTowHit.h"
-#include "StPicoEvent/StPicoEmcTrigger.h"
-#include "StPicoEvent/StPicoBTofPidTraits.h"
-#include "StPicoEvent/StPicoTrackCovMatrix.h"
-#include "StRefMultCorr/StRefMultCorr.h"
-#include "StRefMultCorr/BadRun.h"
-#include "StRefMultCorr/CentralityMaker.h"
-#include "StRefMultCorr/Param.h"
+#include "../StROOT/StPicoEvent/StPicoDst.h"
+#include "../StROOT/StPicoEvent/StPicoEvent.h"
+#include "../StROOT/StPicoEvent/StPicoTrack.h"
+#include "../StROOT/StPicoEvent/StPicoBTofHit.h"
+#include "../StROOT/StPicoEvent/StPicoBTowHit.h"
+#include "../StROOT/StPicoEvent/StPicoEmcTrigger.h"
+#include "../StROOT/StPicoEvent/StPicoBTofPidTraits.h"
+#include "../StROOT/StPicoEvent/StPicoTrackCovMatrix.h"
+#include "../StROOT/StRefMultCorr/StRefMultCorr.h"
+#include "../StROOT/StRefMultCorr/BadRun.h"
+#include "../StROOT/StRefMultCorr/CentralityMaker.h"
+#include "../StROOT/StRefMultCorr/Param.h"
 //_________________
 #if ROOT_VERSION_CODE >= ROOT_VERSION(6, 0, 0)
 R__LOAD_LIBRARY(./StPicoEvent/libStPicoDst);
