@@ -12,7 +12,7 @@
 #include "TStyle.h"
 #include "TLegend.h"
 #include <TH2.h>
-
+#include "TRatioPlot.h"
 using namespace std;
 
 TFile *file = new TFile("/home/ubuntu/folder/1Myresults/isobar_RuRu_2018.root", "READ");
@@ -92,7 +92,7 @@ void plotPt()
     for (int i = 0; i < 9; i++)
     {
         c = new TCanvas("", "", 1800,1000); 
-        legend = new TLegend(0.78,0.55,0.8,0.85);
+        legend = new TLegend(0.78,0.55,0.65,0.85);
     
         file->GetObject(Form("hist_%s_nscut_cent%s", part[k].Data(), centc[i].Data()), hspectra1[k][i]);
         file->GetObject(Form("hist_%s_nsm2cut_cent%s", part[k].Data(), centc[i].Data()), hspectra2[k][i]);
@@ -130,7 +130,8 @@ void plotPt()
         hspectra2[k][i]->SetMarkerColor(600);
         hspectra1[k][i]->SetMarkerStyle(24);
         hspectra2[k][i]->SetMarkerStyle(20);
-
+        TRatioPlot *rp = new TRatioPlot(hspectra1[k][i],hspectra2[k][i]);
+        rp->Draw();
         legend->SetTextSize(0.02);
         legend->SetBorderSize(0);
        // legend->SetNColumns(1);

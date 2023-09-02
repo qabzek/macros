@@ -4,9 +4,10 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/home/ubuntu/folder/root/include",
-                "/home/ubuntu/folder/macros/StPicoEvent",
-                "/home/ubuntu/folder/macros/StRefMultCorr",
+                "/home/ubuntu/root/include",
+                "/home/ubuntu/folder/StROOT/StPicoEvent",
+                "/home/ubuntu/folder/StROOT/StRefMultCorr",
+                "/home/ubuntu/root/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
