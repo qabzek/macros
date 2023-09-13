@@ -13,6 +13,7 @@
 #include "TLegend.h"
 #include <TH2.h>
 #include "TRatioPlot.h"
+#include "TLatex.h"
 using namespace std;
 
 TFile *file = new TFile("/home/ubuntu/folder/1Myresults/isobar_RuRu_2018.root", "READ");
@@ -25,11 +26,17 @@ TH1D *hPt[9];
 TH1D *hdedx_py;
 TH1D *hbeta_py;
 TH1D *hCentCount;
+TH1D *hnspion;
+TH1D *hnskaon;
+TH1D *hnsproton;
+TH2D *hmass2;
 Float_t Nevents;
 TCanvas *c;
 TCanvas *c1;
+TCanvas *c2;
+TCanvas *c3;
 TLegend *legend; 
-
+TLatex *t;
 
 
 
@@ -42,7 +49,7 @@ int marker[9]         = {20,21,25,24,22,26,29,30,31};
 Double_t x[75]        = {
                          0.1,0.125,0.15,0.175,0.2,0.225,0.25,0.275,0.3,0.325,0.35,0.375,0.4,0.425,0.45,0.475,0.5,0.525,0.55,0.575,0.6,0.625,0.65,0.675,0.7,0.725,0.75,0.775,0.8,0.825,0.85,0.875,0.9,0.925,0.95,0.975,1,1.05,
                          1.1,1.125,1.15,1.175,1.2,1.225,1.25,1.275,1.3,1.325,1.35,1.375,1.4,1.425,1.45,1.475,1.5,1.525,1.55,1.575,1.6,1.625,1.65,1.675,1.7,1.725,1.75,1.775,1.8,1.825,1.85,1.875,1.9,1.925,1.95,1.975,2};
-TString part[6]       = {"pip","pim","kap","kam","pr","pm"};
+TString part[6]       = {"#pi^{+}","#pi^{-}","K^{+}","K^{-}","p","#bar{p}"};
               
 
 
@@ -122,8 +129,8 @@ void plotPt()
         gPad->SetLogy();
         hspectra1[k][i]->SetXTitle("p_{T} [Gev/c]");
         hspectra2[k][i]->SetXTitle("p_{T} [Gev/c]");
-        hspectra1[k][i]->SetYTitle("Yields");
-        hspectra2[k][i]->SetYTitle("Yields");
+        hspectra1[k][i]->SetYTitle("#frac{1}{2#pi} #frac{d^{2}N}{p_{T}dp_{T}d#eta} [(GeV/c)^{2}]");
+        hspectra2[k][i]->SetYTitle("#frac{1}{2#pi} #frac{d^{2}N}{p_{T}dp_{T}d#eta} [(GeV/c)^{2}]");
         hspectra1[k][i]->SetLineColor(1);
         hspectra2[k][i]->SetLineColor(600);
         hspectra1[k][i]->SetMarkerColor(1);
@@ -132,6 +139,8 @@ void plotPt()
         hspectra2[k][i]->SetMarkerStyle(20);
         TRatioPlot *rp = new TRatioPlot(hspectra1[k][i],hspectra2[k][i]);
         rp->Draw();
+        t = new TLatex(1,1e7,Form("Ru+Ru 200 GeV, %s",part[k].Data()));
+        t->Draw();
         legend->SetTextSize(0.02);
         legend->SetBorderSize(0);
        // legend->SetNColumns(1);
@@ -142,6 +151,68 @@ void plotPt()
         //c->SaveAs(Form("/home/ubuntu/folder/1Myresults/isobar_2018/RuRu/%s_spectra.png", centc[i].Data()));
     }
     }
+    
+    file->GetObject("hist_nspion",hnspion);
+    file->GetObject("hist_nskaon",hnskaon);
+    file->GetObject("hist_nsproton",hnsproton);
+    file->GetObject("hist_squaredMass_after",hmass2);
+    c=new TCanvas();
+    hnspion->Draw();
+    TLine* l1 = new TLine(-2,0,-2,18*1e6);
+    TLine* l2 = new TLine(2,0,2,18*1e6);
+    l1->SetLineWidth(2);
+    l2->SetLineWidth(2);
+    l1->Draw();
+    l2->Draw();
+    c->SaveAs("/home/ubuntu/folder/1Myresults/isobar_2018/RuRu/Spectra/nspioncut.png");
+    c1=new TCanvas();
+    hnskaon->Draw();
+    TLine* l3 = new TLine(-3,0,-3,4.5*1e6);
+    TLine* l4 = new TLine(3,0,3,4.5*1e6);
+    l3->SetLineWidth(2);
+    l4->SetLineWidth(2);
+    l3->Draw();
+    l4->Draw();
+    c1->SaveAs("/home/ubuntu/folder/1Myresults/isobar_2018/RuRu/Spectra/nskaoncut.png");
+    c2=new TCanvas();
+    hnsproton->Draw();
+    TLine* l5 = new TLine(-2,0,-2,2*1e6);
+    TLine* l6 = new TLine(2,0,2,2*1e6);
+    l5->SetLineWidth(2);
+    l6->SetLineWidth(2);
+    l5->Draw();
+    l6->Draw();
+    c2->SaveAs("/home/ubuntu/folder/1Myresults/isobar_2018/RuRu/Spectra/nsprotoncut.png");
+    c3= new TCanvas();
+    gPad->SetLogz();
+    hmass2->Draw("col");
+    TLine* l7 =new TLine(-3,-0.1,3,-0.1);
+    l7->SetLineWidth(2);
+    l7->SetLineColor(1);
+    TLine* l8 =new TLine(-3,0.1,3,0.1);
+    l8->SetLineWidth(2);
+    l8->SetLineColor(1);
+    TLine* l9 =new TLine(-3,0.11,3,0.11);
+    l9->SetLineWidth(2);
+    l9->SetLineColor(2);
+    TLine* l10 =new TLine(-3,0.32,3,0.32);
+    l10->SetLineWidth(2);
+    l10->SetLineColor(2);
+    TLine* l11 =new TLine(-3,0.35,3,0.35);
+    l11->SetLineWidth(2);
+    l11->SetLineColor(28);
+    TLine* l12 =new TLine(-3,1.1,3,1.1);
+    l12->SetLineWidth(2);
+    l12->SetLineColor(28);
+
+    l7->Draw();
+    l8->Draw();
+    l9->Draw();
+    l10->Draw();
+    l11->Draw();
+    l12->Draw();
+    c3->SaveAs("/home/ubuntu/folder/1Myresults/isobar_2018/RuRu/Spectra/mass2cut.png");
+
 }
 void pid()
 {

@@ -69,9 +69,9 @@ void build()
         hist_squaredMass[i]=new TH2D(Form("hist_squaredMass_%s",config[i].Data()),Form("Squared Mass %s cuts;;p_{T}/q, (GeV/c);m^{2}, (GeV)^{2}",config[i].Data()),1000,-3,3,1000,-0.5,1.5);
 
     }
-        hist_nspion = new TH1D("hist_nspion","nsigma pion",70,-35,35);
-        hist_nskaon = new TH1D("hist_nskaon","nsigma kaon",70,-35,35);
-        hist_nsproton = new TH1D("hist_nsproton","nsigma proton",70,-35,35);
+        hist_nspion = new TH1D("hist_nspion","nsigma pion",60,-15,15);
+        hist_nskaon = new TH1D("hist_nskaon","nsigma kaon",60,-15,15);
+        hist_nsproton = new TH1D("hist_nsproton","nsigma proton",60,-15,15);
 }
 
 void build_pt()
@@ -83,21 +83,28 @@ void build_pt()
         //hist_spectra[k] = new TH1D(Form("hist_spectra_cent%i", k),
         //                           Form("p_{T} spectra for %s centrality", centc[k].Data()), 60, 0, 6);
         hist_spectra[k] = new TH1D(Form("hist_spectra_cent%s", centc[k].Data()),
-                                   "p_{T} spectra for each centrality", 60, 0, 6);
+                                   "",//Form("p_{T} spectra for %s centrality",centc[k].Data()), 
+                                   60, 0, 6);
         for(int i = 0;i < 2;i++)
         {
-        hist_pip[i][k] = new TH1D(Form("hist_pip_%s_cent%s",type[i].Data(),centc[k].Data()),
-                                   "pip p_{T} spectra for each centrality", 60, 0, 6);
-        hist_pim[i][k] = new TH1D(Form("hist_pim_%s_cent%s",type[i].Data(),centc[k].Data()),
-                                   "pim p_{T} spectra for each centrality", 60, 0, 6);    
-        hist_kap[i][k] = new TH1D(Form("hist_kap_%s_cent%s",type[i].Data(),centc[k].Data()),
-                                   "kap p_{T} spectra for each centrality", 60, 0, 6);
-        hist_kam[i][k] = new TH1D(Form("hist_kam_%s_cent%s",type[i].Data(),centc[k].Data()),
-                                   "kam p_{T} spectra for each centrality", 60, 0, 6);
-        hist_pr[i][k] = new TH1D(Form("hist_pr_%s_cent%s",type[i].Data(),centc[k].Data()),
-                                   "pr p_{T} spectra for each centrality", 60, 0, 6); 
-        hist_apr[i][k] = new TH1D(Form("hist_pm_%s_cent%s",type[i].Data(),centc[k].Data()),
-                                   "apr p_{T} spectra for each centrality", 60, 0, 6);                       
+        hist_pip[i][k] = new TH1D(Form("hist_#pi^{+}_%s_cent%s",type[i].Data(),centc[k].Data()),
+                                   "",//Form("pip p_{T} spectra for %s centrality",centc[k].Data()), 
+                                   60, 0, 6);
+        hist_pim[i][k] = new TH1D(Form("hist_#pi^{-}_%s_cent%s",type[i].Data(),centc[k].Data()),
+                                   "",//Form("pim p_{T} spectra for %s centrality",centc[k].Data()), 
+                                   60, 0, 6);    
+        hist_kap[i][k] = new TH1D(Form("hist_K^{+}_%s_cent%s",type[i].Data(),centc[k].Data()),
+                                   "",//Form("kap p_{T} spectra for %s centrality",centc[k].Data()), 
+                                   60, 0, 6);
+        hist_kam[i][k] = new TH1D(Form("hist_K^{-}_%s_cent%s",type[i].Data(),centc[k].Data()),
+                                   "",//Form("kam p_{T} spectra for %s centrality",centc[k].Data()), 
+                                   60, 0, 6);
+        hist_pr[i][k] = new TH1D(Form("hist_p_%s_cent%s",type[i].Data(),centc[k].Data()),
+                                  "",//Form( "pr p_{T} spectra for %s centrality",centc[k].Data()), 
+                                  60, 0, 6); 
+        hist_apr[i][k] = new TH1D(Form("hist_#bar{p}_%s_cent%s",type[i].Data(),centc[k].Data()),
+                                   "",//Form("apr p_{T} spectra for %s centrality",centc[k].Data()), 
+                                   60, 0, 6);                       
         }
     }
 }

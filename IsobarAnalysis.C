@@ -286,7 +286,7 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/folder/isobar_files/prod
                 //PID with TPC+TOF selection
                 if(tofBeta > 0 && ToF > 0 && matchflag > 0)    
                    { 
-                    if (TMath::Abs(picoTrack->nSigmaPion()) < 2 && mass2 > 0.001 && mass2 < 0.1)
+                    if (TMath::Abs(picoTrack->nSigmaPion()) < 2 && mass2 > -0.1 && mass2 < 0.1)
                     {
                         if (picoTrack->charge() == 1)
                             hist_pip[1][cent9]->Fill(picoTrack->pMom().Pt(), 1. / 2 * M_PI * (picoTrack->pMom().Pt()) * dPtpip * dEta);
@@ -294,14 +294,14 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/folder/isobar_files/prod
                             hist_pim[1][cent9]->Fill(picoTrack->pMom().Pt(), 1. / 2 * M_PI * (picoTrack->pMom().Pt()) * dPtpim * dEta);
                     }
 
-                    if (TMath::Abs(picoTrack->nSigmaKaon()) < 3 && mass2 > 0.18 && mass2 < 0.32)
+                    if (TMath::Abs(picoTrack->nSigmaKaon()) < 3 && mass2 > 0.11 && mass2 < 0.32)
                     {
                         if (picoTrack->charge() == 1)
                             hist_kap[1][cent9]->Fill(picoTrack->pMom().Pt(), 1. / 2 * M_PI * (picoTrack->pMom().Pt()) * dPtkap * dEta);
                         else
                             hist_kam[1][cent9]->Fill(picoTrack->pMom().Pt(), 1. / 2 * M_PI * (picoTrack->pMom().Pt()) * dPtkam * dEta);
                     }
-                    if (TMath::Abs(picoTrack->nSigmaProton()) < 2 && mass2 > 0.4 && mass2 < 1.1)
+                    if (TMath::Abs(picoTrack->nSigmaProton()) < 2 && mass2 > 0.35 && mass2 < 1.1)
                     {
                         if (picoTrack->charge() == 1)
                             hist_pr[1][cent9]->Fill(picoTrack->pMom().Pt(), 1. / 2 * M_PI * (picoTrack->pMom().Pt()) * dPtpr * dEta);
