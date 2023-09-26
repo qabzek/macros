@@ -37,6 +37,9 @@ TCanvas *c2;
 TCanvas *c3;
 TLegend *legend; 
 TLatex *t;
+TLatex *t1;
+TLatex *t2;
+TLatex *t3;
 
 
 
@@ -99,7 +102,7 @@ void plotPt()
     for (int i = 0; i < 9; i++)
     {
         c = new TCanvas("", "", 1800,1000); 
-        legend = new TLegend(0.78,0.55,0.65,0.85);
+        legend = new TLegend(0.68,0.55,0.65,0.85);
     
         file->GetObject(Form("hist_%s_nscut_cent%s", part[k].Data(), centc[i].Data()), hspectra1[k][i]);
         file->GetObject(Form("hist_%s_nsm2cut_cent%s", part[k].Data(), centc[i].Data()), hspectra2[k][i]);
@@ -137,11 +140,21 @@ void plotPt()
         hspectra2[k][i]->SetMarkerColor(600);
         hspectra1[k][i]->SetMarkerStyle(24);
         hspectra2[k][i]->SetMarkerStyle(20);
+        TPad *p;
         TRatioPlot *rp = new TRatioPlot(hspectra1[k][i],hspectra2[k][i]);
+        rp->SetH1DrawOpt("E");
+        rp->SetH2DrawOpt("E");
         rp->Draw();
+        p = rp->GetUpperPad();
+        p->cd();
+
+        rp->GetLowerRefYaxis()->SetTitle("ratio");
+        rp->GetUpperRefYaxis()->SetTitle("#frac{1}{2#pi} #frac{d^{2}N}{p_{T}dp_{T}d#eta} [(GeV/c)^{2}]");
+        rp->GetLowerRefGraph()->SetMinimum(0);
+        rp->GetLowerRefGraph()->SetMaximum(25);
         t = new TLatex(1,1e7,Form("Ru+Ru 200 GeV, %s",part[k].Data()));
         t->Draw();
-        legend->SetTextSize(0.02);
+        legend->SetTextSize(0.05);
         legend->SetBorderSize(0);
        // legend->SetNColumns(1);
         legend->AddEntry(hspectra1[k][i],Form("%s, n#sigma selection",centc[i].Data()),"p");
@@ -158,6 +171,8 @@ void plotPt()
     file->GetObject("hist_squaredMass_after",hmass2);
     c=new TCanvas();
     hnspion->Draw();
+    t3 = new TLatex(-14,14e6,"Ru+Ru 200 GeV,n#sigma_{#pi}");
+    t3->Draw();
     TLine* l1 = new TLine(-2,0,-2,18*1e6);
     TLine* l2 = new TLine(2,0,2,18*1e6);
     l1->SetLineWidth(2);
@@ -167,6 +182,8 @@ void plotPt()
     c->SaveAs("/home/ubuntu/folder/1Myresults/isobar_2018/RuRu/Spectra/nspioncut.png");
     c1=new TCanvas();
     hnskaon->Draw();
+    t1 = new TLatex(-14.3,4e6,"Ru+Ru 200 GeV,n#sigma_{K}");
+    t1->Draw();
     TLine* l3 = new TLine(-3,0,-3,4.5*1e6);
     TLine* l4 = new TLine(3,0,3,4.5*1e6);
     l3->SetLineWidth(2);
@@ -176,6 +193,8 @@ void plotPt()
     c1->SaveAs("/home/ubuntu/folder/1Myresults/isobar_2018/RuRu/Spectra/nskaoncut.png");
     c2=new TCanvas();
     hnsproton->Draw();
+    t2 = new TLatex(-14,18e5,"Ru+Ru 200 GeV,n#sigma_{p}");
+    t2->Draw();
     TLine* l5 = new TLine(-2,0,-2,2*1e6);
     TLine* l6 = new TLine(2,0,2,2*1e6);
     l5->SetLineWidth(2);

@@ -93,7 +93,6 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/folder/isobar_files/prod
 
         // Retrieve picoDst
         StPicoDst *picoDst = picoReader->picoDst();
-
         // Retrieve event information
         StPicoEvent *event = picoDst->event();
         if (!event)
@@ -102,6 +101,7 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/folder/isobar_files/prod
                       << std::endl;
             break;
         }
+
 
         // refmult
         hist_mult[0]->Fill(event->refMult());
@@ -125,7 +125,10 @@ int IsobarAnalysis(const Char_t *inFile = "/home/ubuntu/folder/isobar_files/prod
         if (cent9 < 0)
             continue;
 
-        // same with cuts
+       
+       
+       
+        // same filling with cuts
         if (!((event->primaryVertex().Z()) > -35 && (event->primaryVertex().Z()) < 25 &&
               TMath::Sqrt(pow(event->primaryVertex().X(), 2) + pow(event->primaryVertex().Y(), 2)) < 2))
             continue;
